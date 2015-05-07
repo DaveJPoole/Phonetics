@@ -196,6 +196,7 @@ public class GeneralPhonetics : BasePhonetics
             }
             _currentCharacterPosition++;
         }
+        _validCharacterPosition++;
 
         // Once all the duplicate characters have been knocked out we need to make sure that
         //  the rest of the string contains nothing but spaces.
