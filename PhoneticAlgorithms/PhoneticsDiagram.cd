@@ -3,7 +3,7 @@
   <Class Name="GeneralPhonetics" Collapsed="true">
     <Position X="2" Y="2.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAAAAAAAAAIAAAAAAIAACAAABIACABACAQCAA=</HashCode>
+      <HashCode>AAABAAAAAAAAAABAIAAAAAAIAAAAAABIACABACAQCAA=</HashCode>
       <FileName>GeneralPhonetics.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -34,6 +34,20 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
       <FileName>Soundex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NYSIIS" Collapsed="true">
+    <Position X="1" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAIAAAAQgAAAEAAAAAQAAA=</HashCode>
+      <FileName>NYSIIS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NYSIISUtility" Collapsed="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAACAAABAAAAAA=</HashCode>
+      <FileName>NYSIISUtility.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
