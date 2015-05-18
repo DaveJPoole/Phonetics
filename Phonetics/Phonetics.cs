@@ -22,6 +22,9 @@ public partial class Phonetics
             case 2:
                 PhoneticObject = new NYSIIS(InputString);
                 break;
+            case 3:
+                PhoneticObject = new DaitchMokotoff(InputString);
+                break;
             default:
                 PhoneticObject = new Soundex(InputString);
                 PhoneticType = 0;
