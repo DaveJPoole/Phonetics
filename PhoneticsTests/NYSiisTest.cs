@@ -68,5 +68,11 @@ namespace PhoneticsTests
             Assert.AreEqual("BANAN", Phonetics.LongPhonetic(2, "BOWMAN"));
 
         }
+        [TestMethod]
+        public void NYSIIS_TwoWordTest()
+        {
+            Assert.AreEqual("DAVAD PAL", Phonetics.LongPhonetic(2, "David-@Poole"));
+
+        }
     }
 }
