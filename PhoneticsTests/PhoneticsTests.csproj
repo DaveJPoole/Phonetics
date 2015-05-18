@@ -55,6 +55,7 @@
     <Compile Include="SoundexTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NYSiisTest.cs" />
+    <Compile Include="DaitchMokotoffTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PhoneticAlgorithms\PhoneticAlgorithms.csproj">
