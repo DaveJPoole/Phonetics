@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿/// <summary>
+/// The NYSIIS character substitutions are represented as 3 arrays.
+/// 1.  WORDSTART
+/// 2.  WORDMIDDLE
+/// 3.  WORDEND
+/// 
+/// The intent is that these substitutions are data driven from a static class requiring no instantiation.
+/// </summary>
 public static class NYSIISUtility
 {
     public static char[][][] WORDSTART = new char[][][]

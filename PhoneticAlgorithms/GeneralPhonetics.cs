@@ -23,7 +23,6 @@ public class GeneralPhonetics : BasePhonetics
     public override void Iterate()
     {
         base.Iterate();
-        CleanOutputArray();
     }
 
 
@@ -185,7 +184,7 @@ public class GeneralPhonetics : BasePhonetics
     /// For this reason an end cleanup rountine is required.
     /// </summary>
     /// <remarks>The assumption is that all transformations performed on non-letters has resulted in a specific single character i.e. a space.</remarks>
-    private void CleanOutputArray()
+    public void CleanOutputArray()
     {
         _currentCharacterPosition = 1;
         _validCharacterPosition=0;

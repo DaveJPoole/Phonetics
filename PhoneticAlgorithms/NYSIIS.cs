@@ -12,10 +12,9 @@ public class NYSIIS : GeneralPhonetics
 
     public override void PhoneticAlgorithm()
     {
-        bool stopProcessing = false;
         if (IsStartOfWord())
         {
-            if (!(stopProcessing= ProcessWordStart()))
+            if (!(ProcessWordStart()))
             {
                 _outputArray[_validCharacterPosition++] = _inputArray[_currentCharacterPosition];
             }
@@ -34,6 +33,7 @@ public class NYSIIS : GeneralPhonetics
     public override void Iterate()
     {
         base.Iterate();
+        base.CleanOutputArray();
     }
     /// <summary>
     /// Carries out any character substitutions necessary at the start of a word.  Where a valid substitution is not detected

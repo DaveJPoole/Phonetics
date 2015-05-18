@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="BasePhonetics.cs" />
     <Compile Include="BaseSoundex.cs" />
+    <Compile Include="DaitchMokotoff.cs" />
+    <Compile Include="DaitchMokotoffUtility.cs" />
     <Compile Include="GeneralPhonetics.cs" />
     <Compile Include="NYSIIS.cs" />
     <Compile Include="NYSIISUtility.cs" />
