@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 public class DaitchMokotoff : GeneralPhonetics
 {
-    public DaitchMokotoff(string inputString) : base(inputString) { }
+    public DaitchMokotoff(string inputString) : base(inputString) {
+        TwoCharacterReplacements = new char[] { 'X' }; 
+    }
 
 
     public override void Iterate()
