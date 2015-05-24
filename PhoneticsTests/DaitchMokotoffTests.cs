@@ -74,6 +74,55 @@ namespace PhoneticsTests
             Assert.AreEqual("3", Phonetics.LongPhonetic(3, "D"));
         }
         [TestMethod]
+        public void DM_FourStart()
+        {
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TTSCH"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "CSZ"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "CZS"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "CS"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "CZ"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "DRZ"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "DRS"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "DSH"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "DZH"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "DZS"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "DS"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "DZ"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "S"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "Z"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TRZ"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TRS"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TRCH"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TSH"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "SCH"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "SH"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TTSZ"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TTZ"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TTS"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TZS"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TC"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TS"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TZ"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TSZ"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "ZH"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "ZS"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "ZSCH"));
+            Assert.AreEqual("4", Phonetics.LongPhonetic(3, "ZHSH"));
+        }
+        [TestMethod]
+        public void DM_FiveStart()
+        {
+            Assert.AreEqual("5", Phonetics.LongPhonetic(3, "CHS"));
+            Assert.AreEqual("5", Phonetics.LongPhonetic(3, "CH"));
+            Assert.AreEqual("5", Phonetics.LongPhonetic(3, "CK"));
+            Assert.AreEqual("5", Phonetics.LongPhonetic(3, "KH"));
+            Assert.AreEqual("5", Phonetics.LongPhonetic(3, "KS"));
+            Assert.AreEqual("5", Phonetics.LongPhonetic(3, "C"));
+            Assert.AreEqual("5", Phonetics.LongPhonetic(3, "G"));
+            Assert.AreEqual("5", Phonetics.LongPhonetic(3, "K"));
+            Assert.AreEqual("5", Phonetics.LongPhonetic(3, "Q"));
+        }
+        [TestMethod]
         public void DM_SixStart()
         {
             Assert.AreEqual("6", Phonetics.LongPhonetic(3, "M"));
@@ -101,5 +150,22 @@ namespace PhoneticsTests
         {
             Assert.AreEqual("9", Phonetics.LongPhonetic(3, "R"));
         }
+        [TestMethod]
+        public void DM_START_AllAlphabeticsTest()
+        {
+            String testString="";
+            
+            for (int i = Convert.ToInt32('A'); i <= Convert.ToInt32('Z'); i++)
+            {
+                testString = Convert.ToString(Phonetics.LongPhonetic(3, Convert.ToChar(i).ToString()));
+
+                if (!Char.IsDigit(testString,0)){
+
+                    Assert.Fail("Incomplete list of substitutions for starting characters "+testString);
+
+                }
+            }
+        }
+
     }
 }
