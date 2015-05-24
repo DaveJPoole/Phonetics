@@ -26,6 +26,20 @@ public class DaitchMokotoff : GeneralPhonetics
             }
 
         }
+        else
+        {
+            if (_currentCharacterPosition>0 && isVowel(_inputArray[_currentCharacterPosition - 1]))
+            {
+                if (!(ProcessWordAfterVowel()))
+                {
+                    if (!char.IsLetter(_inputArray[_currentCharacterPosition])){
+                         _outputArray[_validCharacterPosition++]=' ';
+                    }
+
+                }
+            }
+
+        }
 
     }
 
@@ -46,6 +60,45 @@ public class DaitchMokotoff : GeneralPhonetics
             }
         }
         return returnValue;
+
+    }
+
+    /// <summary>
+    /// Carries out any character substitution necessary where a vowel is detected as the preceding character.
+    /// </summary>
+    /// <returns>TRUE = The after vowel substitution algorithm successfully identified and replaced an 'n' character word </returns>
+    private bool ProcessWordAfterVowel()
+    {
+        bool returnValue = false;
+        for (int i = 0; i < DaitchMokotoffUtility.AFTERVOWEL.Length; i++)
+        {
+            if (ArrayMatchFromPosition(_currentCharacterPosition, DaitchMokotoffUtility.AFTERVOWEL[i][0]) == DaitchMokotoffUtility.AFTERVOWEL[i][0].Length)
+            {
+                returnValue = ArrayReplaceFromPosition(DaitchMokotoffUtility.AFTERVOWEL[i][0], DaitchMokotoffUtility.AFTERVOWEL[i][1]);
+                if (returnValue) { break; }
+            }
+        }
+        return returnValue;
+
+
+    }
+/// <summary>
+    /// Carries out any character substitution necessary where a valid letter that is a non-vowel is detected as the preceding character.
+/// </summary>
+/// <returns></returns>
+    private bool ProcessWordAfterNonVowel()
+    {
+        bool returnValue = false;
+        for (int i = 0; i < DaitchMokotoffUtility.AFTERVOWEL.Length; i++)
+        {
+            if (ArrayMatchFromPosition(_currentCharacterPosition, DaitchMokotoffUtility.AFTERVOWEL[i][0]) == DaitchMokotoffUtility.AFTERVOWEL[i][0].Length)
+            {
+                returnValue = ArrayReplaceFromPosition(DaitchMokotoffUtility.AFTERVOWEL[i][0], DaitchMokotoffUtility.AFTERVOWEL[i][1]);
+                if (returnValue) { break; }
+            }
+        }
+        return returnValue;
+
 
     }
 
