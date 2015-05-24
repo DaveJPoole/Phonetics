@@ -72,6 +72,7 @@ namespace PhoneticsTests
         public void NYSIIS_TwoWordTest()
         {
             Assert.AreEqual("DAVAD PAL", Phonetics.LongPhonetic(2, "David-@Poole"));
+            Assert.AreEqual("AH AH", Phonetics.LongPhonetic(2, "-AH-AH"));
 
         }
     }
