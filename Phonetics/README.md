@@ -25,6 +25,7 @@ It has proven to be an educational project in many ways
 ## Current state of play
 
 |Algorithm|Status|
+|----------|----------|
 |Soundex|COMPLETE|
 |RefinedSoundex|COMPLETE|
 |NYSIIS|COMPLETE|
