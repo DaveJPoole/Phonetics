@@ -3,9 +3,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace PhoneticsTests
 {
+    
     [TestClass]
     public class DaitchMokotoffSoundex
     {
+#region Word Start Tests
         [TestMethod]
         public void DM_ZeroStart()
         {
@@ -31,7 +33,7 @@ namespace PhoneticsTests
             Assert.AreEqual("0", Phonetics.LongPhonetic(3, "Y"));
         }
         [TestMethod]
-        public void DM_OneStart()
+        public void DM_Start_1()
         {
             Assert.AreEqual("1", Phonetics.LongPhonetic(3, "IA"));
             Assert.AreEqual("1", Phonetics.LongPhonetic(3, "IE"));
@@ -41,7 +43,7 @@ namespace PhoneticsTests
             Assert.AreEqual("1", Phonetics.LongPhonetic(3, "J"));
         }
         [TestMethod]
-        public void DM_TwoStart()
+        public void DM_Start_2()
         {
             Assert.AreEqual("2", Phonetics.LongPhonetic(3, "SCHTSCH"));
             Assert.AreEqual("2", Phonetics.LongPhonetic(3, "SCHTSH"));
@@ -66,7 +68,7 @@ namespace PhoneticsTests
             Assert.AreEqual("2", Phonetics.LongPhonetic(3, "SC"));
         }
         [TestMethod]
-        public void DM_ThreeStart()
+        public void DM_Start_3()
         {
             Assert.AreEqual("3", Phonetics.LongPhonetic(3, "DT"));
             Assert.AreEqual("3", Phonetics.LongPhonetic(3, "TH"));
@@ -74,7 +76,7 @@ namespace PhoneticsTests
             Assert.AreEqual("3", Phonetics.LongPhonetic(3, "D"));
         }
         [TestMethod]
-        public void DM_FourStart()
+        public void DM_Start_4()
         {
             Assert.AreEqual("4", Phonetics.LongPhonetic(3, "TTSCH"));
             Assert.AreEqual("4", Phonetics.LongPhonetic(3, "CSZ"));
@@ -110,7 +112,7 @@ namespace PhoneticsTests
             Assert.AreEqual("4", Phonetics.LongPhonetic(3, "ZHSH"));
         }
         [TestMethod]
-        public void DM_FiveStart()
+        public void DM_Start_5()
         {
             Assert.AreEqual("5", Phonetics.LongPhonetic(3, "CHS"));
             Assert.AreEqual("5", Phonetics.LongPhonetic(3, "CH"));
@@ -123,13 +125,13 @@ namespace PhoneticsTests
             Assert.AreEqual("5", Phonetics.LongPhonetic(3, "Q"));
         }
         [TestMethod]
-        public void DM_SixStart()
+        public void DM_Start_6()
         {
             Assert.AreEqual("6", Phonetics.LongPhonetic(3, "M"));
             Assert.AreEqual("6", Phonetics.LongPhonetic(3, "N"));
         }
         [TestMethod]
-        public void DM_SevenStart()
+        public void DM_Start_7()
         {
             Assert.AreEqual("7", Phonetics.LongPhonetic(3, "FB"));
             Assert.AreEqual("7", Phonetics.LongPhonetic(3, "PH"));
@@ -141,12 +143,12 @@ namespace PhoneticsTests
             Assert.AreEqual("7", Phonetics.LongPhonetic(3, "W"));
         }
         [TestMethod]
-        public void DM_EightStart()
+        public void DM_Start_8()
         {
             Assert.AreEqual("8", Phonetics.LongPhonetic(3, "L"));
         }
         [TestMethod]
-        public void DM_NineStart()
+        public void DM_Start_9()
         {
             Assert.AreEqual("9", Phonetics.LongPhonetic(3, "R"));
         }
@@ -166,6 +168,136 @@ namespace PhoneticsTests
                 }
             }
         }
+#endregion
+        #region After Vowel Tests
+        [TestMethod]
+        public void DM_ActiveSingleTest()
+        {
+            Assert.AreEqual("0505", Phonetics.LongPhonetic(3, "-AH-AH"));
+        }
+        [TestMethod]
+        public void DM_AfterVowel_Discard()
+        {
+            Assert.AreEqual("0", Phonetics.LongPhonetic(3, "UIA"));
+            Assert.AreEqual("0", Phonetics.LongPhonetic(3, "UIE"));
+            Assert.AreEqual("0", Phonetics.LongPhonetic(3, "UIO"));
+            Assert.AreEqual("0", Phonetics.LongPhonetic(3, "UIU"));
+            Assert.AreEqual("0", Phonetics.LongPhonetic(3, "UUE"));
+            Assert.AreEqual("0", Phonetics.LongPhonetic(3, "AA"));
+            Assert.AreEqual("0", Phonetics.LongPhonetic(3, "EE"));
+            Assert.AreEqual("0", Phonetics.LongPhonetic(3, "II"));
+            Assert.AreEqual("0", Phonetics.LongPhonetic(3, "OO"));
+            Assert.AreEqual("0", Phonetics.LongPhonetic(3, "UU"));
+            Assert.AreEqual("0", Phonetics.LongPhonetic(3, "IY"));
+        }
+
+        [TestMethod]
+        public void DM_AfterVowel_1()
+        {
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "AAI"));
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "AAJ"));
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "AAY"));
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "AEI"));
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "AEJ"));
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "AEU"));
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "AEY"));
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "AOI"));
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "AOJ"));
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "AOY"));
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "UUI"));
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "UUJ"));
+            Assert.AreEqual("01", Phonetics.LongPhonetic(3, "UUY"));
+
+
+        }
+        [TestMethod]
+        public void DM_AfterVowel_3()
+        {
+            Assert.AreEqual("03", Phonetics.LongPhonetic(3, "ADT"));
+            Assert.AreEqual("03", Phonetics.LongPhonetic(3, "ATH"));
+            Assert.AreEqual("03", Phonetics.LongPhonetic(3, "AD"));
+            Assert.AreEqual("03", Phonetics.LongPhonetic(3, "AT"));
+        }
+
+
+
+        [TestMethod]
+        public void DM_AfterVowel_4()
+        {
+            Assert.AreEqual("043", Phonetics.LongPhonetic(3, "ASCHD"));
+            Assert.AreEqual("043", Phonetics.LongPhonetic(3, "ASCHT"));
+            Assert.AreEqual("043", Phonetics.LongPhonetic(3, "ASHT"));
+            Assert.AreEqual("043", Phonetics.LongPhonetic(3, "ASHD"));
+            Assert.AreEqual("043", Phonetics.LongPhonetic(3, "ASZD"));
+            Assert.AreEqual("043", Phonetics.LongPhonetic(3, "ASZT"));
+            Assert.AreEqual("043", Phonetics.LongPhonetic(3, "AST"));
+
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASC"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "AS"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "AZ"));
+
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASCHTSCH"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASCHTSH"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASCHTSH"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASCTCH"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASTSCH"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASHTSH"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASHCH"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASTCH"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASTRS"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASTRZ"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASTSH"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASZCZ"));
+            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASZCS"));
+        }
+        
+        [TestMethod]
+        public void DM_AfterVowel_5()
+        {
+            Assert.AreEqual("05", Phonetics.LongPhonetic(3, "AH"));
+            Assert.AreEqual("05", Phonetics.LongPhonetic(3, "ACH"));
+            Assert.AreEqual("05", Phonetics.LongPhonetic(3, "ACK"));
+            Assert.AreEqual("05", Phonetics.LongPhonetic(3, "AH"));
+            Assert.AreEqual("05", Phonetics.LongPhonetic(3, "AC"));
+            Assert.AreEqual("05", Phonetics.LongPhonetic(3, "AG"));
+            Assert.AreEqual("05", Phonetics.LongPhonetic(3, "AK"));
+            Assert.AreEqual("05", Phonetics.LongPhonetic(3, "AQ"));
+            Assert.AreEqual("054", Phonetics.LongPhonetic(3, "AX"));
+            Assert.AreEqual("054", Phonetics.LongPhonetic(3, "AKS"));
+            Assert.AreEqual("054", Phonetics.LongPhonetic(3, "ACHS"));
+        }
+        [TestMethod]
+        public void DM_AfterVowel_6()
+        {
+            Assert.AreEqual("06", Phonetics.LongPhonetic(3, "AM"));
+            Assert.AreEqual("06", Phonetics.LongPhonetic(3, "AN"));
+            Assert.AreEqual("066", Phonetics.LongPhonetic(3, "AMN"));
+            Assert.AreEqual("066", Phonetics.LongPhonetic(3, "ANM"));
+        }
+        [TestMethod]
+        public void DM_AfterVowel_7()
+        {
+            Assert.AreEqual("07", Phonetics.LongPhonetic(3, "AAU"));
+            Assert.AreEqual("07", Phonetics.LongPhonetic(3, "AFB"));
+            Assert.AreEqual("07", Phonetics.LongPhonetic(3, "APH"));
+            Assert.AreEqual("07", Phonetics.LongPhonetic(3, "APF"));
+            Assert.AreEqual("07", Phonetics.LongPhonetic(3, "AB"));
+            Assert.AreEqual("07", Phonetics.LongPhonetic(3, "AF"));
+            Assert.AreEqual("07", Phonetics.LongPhonetic(3, "AP"));
+            Assert.AreEqual("07", Phonetics.LongPhonetic(3, "AV"));
+            Assert.AreEqual("07", Phonetics.LongPhonetic(3, "AW"));
+        }
+        [TestMethod]
+        public void DM_AfterVowel_8()
+        {
+            Assert.AreEqual("08", Phonetics.LongPhonetic(3, "AL"));
+        }
+        [TestMethod]
+        public void DM_AfterVowel_9()
+        {
+            Assert.AreEqual("09", Phonetics.LongPhonetic(3, "AR"));
+        }
+        #endregion
 
     }
 }
