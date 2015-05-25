@@ -6,6 +6,93 @@ using System.Threading.Tasks;
 
 public class GeneralPhonetics : BasePhonetics
 {
+    #region Character substitution arrays that will be replaced in the inherriting class.
+
+    /// <summary>
+    /// The use of a virtual property allows the implementation of the algorithm to use the property to be implemented in the base class
+    /// but caters for the need for the algorithm specific values of WORDSTART to be specified in the inheriting class.
+    /// </summary>
+    public virtual char[][][] WORDSTART
+    {
+        get { return _WORDSTART; }
+    }
+    private
+       static char[][][] _WORDSTART = new char[][][]
+    {
+        new char[][]{
+            new char[] {},
+            new char[] {}
+        }
+    };
+    /// <summary>
+    /// The use of a virtual property allows the implementation of the algorithm to use the property to be implemented in the base class
+    /// but caters for the need for the algorithm specific values of WORDEND to be specified in the inheriting class.
+    /// </summary>
+    public virtual char[][][] WORDEND
+    {
+        get { return _WORDEND; }
+    }
+    private
+       static char[][][] _WORDEND = new char[][][]
+    {
+        new char[][]{
+            new char[] {},
+            new char[] {}
+        }
+    };
+    /// <summary>
+    /// The use of a virtual property allows the implementation of the algorithm to use the property to be implemented in the base class
+    /// but caters for the need for the algorithm specific values of WORDMIDDLE to be specified in the inheriting class.
+    /// </summary>
+    public virtual char[][][] WORDMIDDLE
+    {
+        get { return _WORDMIDDLE; }
+    }
+    private
+       static char[][][] _WORDMIDDLE = new char[][][]
+    {
+        new char[][]{
+            new char[] {},
+            new char[] {}
+        }
+    };
+
+    /// <summary>
+    /// The use of a virtual property allows the implementation of the algorithm to use the property to be implemented in the base class
+    /// but caters for the need for the algorithm specific values of AFTERVOWEL to be specified in the inheriting class.
+    /// </summary>
+    public virtual char[][][] AFTERVOWEL
+    {
+        get { return _AFTERVOWEL; }
+    }
+    private
+       static char[][][] _AFTERVOWEL = new char[][][]
+    {
+        new char[][]{
+            new char[] {},
+            new char[] {}
+        }
+    };
+
+    /// <summary>
+    /// The use of a virtual property allows the implementation of the algorithm to use the property to be implemented in the base class
+    /// but caters for the need for the algorithm specific values of AFTERNONVOWEL to be specified in the inheriting class.
+    /// </summary>
+    public virtual char[][][] AFTERNONVOWEL
+    {
+        get { return _AFTERNONVOWEL; }
+    }
+    private
+       static char[][][] _AFTERNONVOWEL = new char[][][]
+    {
+        new char[][]{
+            new char[] {},
+            new char[] {}
+        }
+    };
+
+#endregion
+
     private char[] _TwoCharReplaceOne;
     private int _WordEndPosition = 0;
 
@@ -206,5 +293,101 @@ public class GeneralPhonetics : BasePhonetics
         
     }
 
+    /// <summary>
+    /// The actions necessary to carry out character substitutions is common across most transformations.
+    /// The bit that varies is the array containing the character patterns and their appropriate replacement.
+    /// </summary>
+    /// <param name="pairSubsitution">The char[][][] array containing the character substitutions</param>
+    /// <returns>True if a replacement has been made successfully</returns>
+    public bool ProcessWordPart(char[][][] pairSubsitution)
+    {
+        bool returnValue = false;
+        for (int i = 0; i < pairSubsitution.Length; i++)
+        {
+            if (ArrayMatchFromPosition(_currentCharacterPosition, pairSubsitution[i][0]) == pairSubsitution[i][0].Length)
+            {
+                returnValue = ArrayReplaceFromPosition(pairSubsitution[i][0], pairSubsitution[i][1]);
+                if (returnValue) { break; }
+            }
+        }
+        return returnValue;
+
+    }
+
+
+    /// <summary>
+    /// Carries out any character substitutions necessary at the start of a word.  Where a valid substitution is not detected
+    /// the responsibility for handling the character is handled by the calling method.
+    /// </summary>
+    /// <returns>TRUE = The word start substitution algorithm successfully identified and replaced an 'n' character word start.</returns>
+    public bool ProcessWordStart()
+    {
+        return ProcessWordPart(WORDSTART);
+
+    }
+
+    
+    ///// <summary>
+    /// Detects whether or not a substitution can be made at the end of the word.
+    /// </summary>
+    /// <returns>TRUE = An 'n' character substitution was achieved at the end of a word.</returns>
+    public bool ProcessWordEnd()
+    {
+        bool returnValue = false;
+        for (int i = 0; i < WORDEND.Length; i++)
+        {
+            if (ArrayMatchFromPosition(_currentCharacterPosition, WORDEND[i][0]) == WORDEND[i][0].Length)
+            {
+                if ((WORDEND[i][0].Length + _currentCharacterPosition == _inputArray.Length)
+                    || (!char.IsLetter(_inputArray[_currentCharacterPosition + WORDEND[i][0].Length])))
+                {
+                    returnValue = ArrayReplaceFromPosition(WORDEND[i][0], WORDEND[i][1]);
+                    if (returnValue) { break; }
+                }
+            }
+
+        }
+        return returnValue;
+
+
+    }
+    /// <summary>
+    /// The assumption is that this routine will be called only after the processing for word start and end has taken place.
+    /// </summary>
+    /// <returns>TRUE = A substitution was made successfully.  If this function returns FALSE it indicates that there has been a break down
+    /// in the logic as this routine should substitute non-characters for spaces and copy characters that should not change.</returns>
+    public bool ProcessWordMiddle()
+    {
+        bool returnValue = false;
+        returnValue = ProcessWordPart(WORDMIDDLE);
+
+        // We haven't found a match so either this is a non-transforming letter or a non-letter
+        if (!returnValue)
+        {
+            _outputArray[_validCharacterPosition++] = char.IsLetter(_inputArray[_currentCharacterPosition]) ? _inputArray[_currentCharacterPosition] : ' ';
+            returnValue = true;
+        }
+
+        return returnValue;
+
+    }
+ 
+    /// <summary>
+    /// Carries out any character substitution necessary where a valid letter that is a non-vowel is detected as the preceding character.
+    /// </summary>
+    /// <returns></returns>
+    public bool ProcessWordAfterNonVowel()
+    {
+        return ProcessWordPart(AFTERNONVOWEL);
+    }
+
+    /// <summary>
+    /// Carries out any character substitution necessary where a vowel is detected as the preceding character.
+    /// </summary>
+    /// <returns>TRUE = The after vowel substitution algorithm successfully identified and replaced an 'n' character word </returns>
+    public bool ProcessWordAfterVowel()
+    {
+        return ProcessWordPart(AFTERVOWEL);
+    }
 }
 
