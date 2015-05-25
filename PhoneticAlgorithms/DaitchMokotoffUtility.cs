@@ -3,9 +3,13 @@
 /// </summary>
 /// <remarks>Note that testing these substitutions should be done by filling in the longest array first.  To give an example let us suppose that you are testing WORDSTART.
 /// Including a Z=4 mapping will mean that all word start substitutions beginning with Z will pass even though the multi-character array substitutions have yet to be written.</remarks>
-public  static partial class DaitchMokotoffUtility
+public   partial class DaitchMokotoff
 {
-    public static char[][][] WORDSTART = new char[][][]
+    public override char[][][] WORDSTART
+    {
+        get { return _WORDSTART; }
+    }
+    private static char[][][] _WORDSTART = new char[][][]
     {
         new char[][]{
             new char[] { 'S', 'C','H','T','S','C','H' },
@@ -52,7 +56,7 @@ public  static partial class DaitchMokotoffUtility
             new char[] {'2'}
         },
         new char[][]{
-            new char[] { 'S','T','R','Z' },
+            new char[] { 'S','T','R','S' },
             new char[] {'2'}
         },
         new char[][]{
