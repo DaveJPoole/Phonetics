@@ -1,9 +1,14 @@
 ﻿/// <summary>
 /// Contains the source to target arrays used to produce the Daith Mokotoff phonetic algorithm
 /// </summary>
-public static partial class DaitchMokotoffUtility
+public  partial class DaitchMokotoff
 {
-    public static char[][][] AFTERVOWEL = new char[][][]
+
+    public override char[][][] AFTERVOWEL
+    {
+        get { return _AFTERVOWEL; }
+    }    
+    private  static char[][][] _AFTERVOWEL = new char[][][]
     {
         new char[][]{
             new char[] { 'S', 'C','H','T','S','C','H' },
