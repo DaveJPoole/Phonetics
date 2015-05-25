@@ -6,9 +6,21 @@
 /// 
 /// The intent is that these substitutions are data driven from a static class requiring no instantiation.
 /// </summary>
-public static class NYSIISUtility
+public partial class NYSIIS
 {
-    public static char[][][] WORDSTART = new char[][][]
+    public override char[][][] WORDSTART
+    {
+        get { return _WORDSTART; }
+    }
+    public override char[][][] WORDMIDDLE
+    {
+        get { return _WORDMIDDLE; }
+    }
+    public override char[][][] WORDEND
+    {
+        get { return _WORDEND; }
+    }
+    private static char[][][] _WORDSTART = new char[][][]
     {
         new char[][]{
             new char[] { 'M', 'A', 'C' },
@@ -36,7 +48,7 @@ public static class NYSIISUtility
         }
     };
 
-    public static char[][][] WORDMIDDLE = new char[][][]{
+    private static char[][][] _WORDMIDDLE = new char[][][]{
         new char[][]{
             new char[] { 'E', 'V'},
             new char[] {'A','F'}
@@ -283,7 +295,7 @@ public static class NYSIISUtility
         }
     };
 
-    public static char[][][] WORDEND = new char[][][]{
+    private static char[][][] _WORDEND = new char[][][]{
         new char[][]{
             new char[] { 'E', 'E'},
             new char[] {'Y'}
