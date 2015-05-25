@@ -7,7 +7,15 @@ namespace PhoneticsTests
     [TestClass]
     public class DaitchMokotoffSoundex
     {
-#region Word Start Tests
+        #region Single Test
+        [TestMethod]
+        public void DM_ActiveSingleTest()
+        {
+            Assert.AreEqual("05 05", Phonetics.LongPhonetic(3, "-AH--AH"));
+        }
+        #endregion
+
+        #region Word Start Tests
         [TestMethod]
         public void DM_ZeroStart()
         {
@@ -48,7 +56,6 @@ namespace PhoneticsTests
             Assert.AreEqual("2", Phonetics.LongPhonetic(3, "SCHTSCH"));
             Assert.AreEqual("2", Phonetics.LongPhonetic(3, "SCHTSH"));
             Assert.AreEqual("2", Phonetics.LongPhonetic(3, "SCHTSH"));
-            Assert.AreEqual("2", Phonetics.LongPhonetic(3, "SCTCH"));
             Assert.AreEqual("2", Phonetics.LongPhonetic(3, "STSCH"));
             Assert.AreEqual("2", Phonetics.LongPhonetic(3, "SHTSH"));
             Assert.AreEqual("2", Phonetics.LongPhonetic(3, "SHCH"));
@@ -171,11 +178,6 @@ namespace PhoneticsTests
 #endregion
         #region After Vowel Tests
         [TestMethod]
-        public void DM_ActiveSingleTest()
-        {
-            Assert.AreEqual("0505", Phonetics.LongPhonetic(3, "-AH-AH"));
-        }
-        [TestMethod]
         public void DM_AfterVowel_Discard()
         {
             Assert.AreEqual("0", Phonetics.LongPhonetic(3, "UIA"));
@@ -239,7 +241,6 @@ namespace PhoneticsTests
             Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASCHTSCH"));
             Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASCHTSH"));
             Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASCHTSH"));
-            Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASCTCH"));
             Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASTSCH"));
             Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASHTSH"));
             Assert.AreEqual("04", Phonetics.LongPhonetic(3, "ASHCH"));
