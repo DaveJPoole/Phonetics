@@ -1,9 +1,14 @@
 ﻿/// <summary>
 /// Contains the source to target arrays used to produce the Daith Mokotoff phonetic algorithm
 /// </summary>
-public static partial class DaitchMokotoffUtility
+public  partial class DaitchMokotoff
 {
-    public static char[][][] AFTERNONVOWEL = new char[][][]
+
+    public override char[][][] AFTERNONVOWEL
+    {
+        get { return _AFTERNONVOWEL; }
+    }
+    private static char[][][] _AFTERNONVOWEL = new char[][][]
     {
         new char[][]{
             new char[] { 'S', 'C','H','T','S','C','H' },
@@ -175,35 +180,35 @@ public static partial class DaitchMokotoffUtility
         },
         new char[][]{
             new char[] { 'A', 'I' },
-            new char[] {'1'}
+            new char[] {}
         },
         new char[][]{
             new char[]{'A','J'},
-            new char[]{'1'}
+            new char[]{}
         },
         new char[][]{
             new char[]{'A','Y'},
-            new char[]{'1'}
+            new char[]{}
         },
         new char[][]{
             new char[]{'A','U'},
-            new char[]{'7'}
+            new char[]{}
         },
         new char[][]{
             new char[] { 'E', 'I' },
-            new char[] {'1'}
+            new char[] {}
         },
         new char[][]{
             new char[]{'E','J'},
-            new char[]{'1'}
+            new char[]{}
         },
         new char[][]{
             new char[]{'E','U'},
-            new char[]{'1'}
+            new char[]{}
         },
         new char[][]{
             new char[]{'E','Y'},
-            new char[]{'1'}
+            new char[]{}
         },
         new char[][]{
             new char[] { 'I', 'A' },
@@ -223,15 +228,15 @@ public static partial class DaitchMokotoffUtility
         },
         new char[][]{
             new char[] { 'O', 'I' },
-            new char[] {'1'}
+            new char[] {}
         },
         new char[][]{
             new char[]{'O','J'},
-            new char[]{'1'}
+            new char[]{}
         },
         new char[][]{
             new char[]{'O','Y'},
-            new char[]{'1'}
+            new char[]{}
         },
         new char[][]{
             new char[] { 'U', 'E' },
@@ -239,15 +244,15 @@ public static partial class DaitchMokotoffUtility
         },
         new char[][]{
             new char[] { 'U', 'I' },
-            new char[] {'1'}
+            new char[] {}
         },
         new char[][]{
             new char[]{'U','J'},
-            new char[]{'1'}
+            new char[]{}
         },
         new char[][]{
             new char[]{'U','Y'},
-            new char[]{'1'}
+            new char[]{}
         },
          new char[][]{
             new char[] { 'S','T' },
@@ -403,7 +408,7 @@ public static partial class DaitchMokotoffUtility
         },
         new char[][]{
             new char[]{'H'},
-            new char[]{'5'}
+            new char[]{}
         },
         new char[][]{
             new char[]{'X'},
