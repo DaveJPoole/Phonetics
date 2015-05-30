@@ -6,28 +6,51 @@ using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
 
 
-
+/// <summary>
+/// Regardless of the phonetic algorithm used certain aspects are common across all algorithms.
+/// </summary>
 public class BasePhonetics : IDisposable
 {
     public char[] _inputArray;
     public char[] _outputArray;
     public int _currentCharacterPosition = 0;
     public int _validCharacterPosition = 0;
+    private bool _isCaseSensitive = false;
 
 
     /// <summary>
-    /// Regardless of the phonetic algorithm used certain aspects are common across all algorithms.
+    /// The Caverphone phonetic algorithm is case sensitive but Soundex, NYSIIS, Daitch Mokotoff are not therefore a constructor
+    /// is needed to enable case sensitivity to be indicated.
     /// </summary>
-    /// <param name="inputString"></param>
-    public BasePhonetics(string inputString)
+    /// <param name="inputString">The string for which we want a phonetic encoding</param>
+    /// <param name="isCaseSentitive">Flag to indicate whether the input string should be changed to upper case prior 
+    /// to computation thereby making the algorithm case insensitive.</param>
+    public BasePhonetics(string inputString, bool isCaseSentitive)
     {
+        _isCaseSensitive = isCaseSentitive;
         _currentCharacterPosition = 0;
         _validCharacterPosition = 0;
         if (String.IsNullOrEmpty(inputString))
         {
             inputString = " ";
         }
-        _inputArray = inputString.ToUpper().ToCharArray();
+        if (_isCaseSensitive)
+        {
+            _inputArray = inputString.ToCharArray();
+        }
+        else
+        {
+            _inputArray = inputString.ToUpper().ToCharArray();
+        }
+        
+
+    }
+    /// <summary>
+    /// Regardless of the phonetic algorithm used certain aspects are common across all algorithms.
+    /// </summary>
+    /// <param name="inputString">The string for which we want a phonetic encoding.</param>
+    public BasePhonetics(string inputString):this(inputString,false)
+    {
     }
 
     /// <summary>
@@ -72,7 +95,7 @@ public class BasePhonetics : IDisposable
     /// </summary>
     public virtual void PhoneticAlgorithm()
     {
-
+        _outputArray[_validCharacterPosition++] = _inputArray[_currentCharacterPosition];
     }
 
     /// <summary>
