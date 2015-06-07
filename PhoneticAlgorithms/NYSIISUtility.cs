@@ -20,7 +20,7 @@ public partial class NYSIIS
     {
         get { return _WORDEND; }
     }
-    private static char[][][] _WORDSTART = new char[][][]
+    private readonly static char[][][] _WORDSTART = new char[][][]
     {
         new char[][]{
             new char[] { 'M', 'A', 'C' },
@@ -48,7 +48,7 @@ public partial class NYSIIS
         }
     };
 
-    private static char[][][] _WORDMIDDLE = new char[][][]{
+    private readonly static char[][][] _WORDMIDDLE = new char[][][]{
         new char[][]{
             new char[] { 'E', 'V'},
             new char[] {'A','F'}
@@ -295,7 +295,7 @@ public partial class NYSIIS
         }
     };
 
-    private static char[][][] _WORDEND = new char[][][]{
+    private readonly static char[][][] _WORDEND = new char[][][]{
         new char[][]{
             new char[] { 'E', 'E'},
             new char[] {'Y'}

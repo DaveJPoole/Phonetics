@@ -16,7 +16,7 @@ public class GeneralPhonetics : BasePhonetics
     {
         get { return _WORDSTART; }
     }
-    private
+    private readonly 
        static char[][][] _WORDSTART = new char[][][]
     {
         new char[][]{
@@ -32,7 +32,7 @@ public class GeneralPhonetics : BasePhonetics
     {
         get { return _WORDEND; }
     }
-    private
+    private readonly 
        static char[][][] _WORDEND = new char[][][]
     {
         new char[][]{
@@ -48,7 +48,7 @@ public class GeneralPhonetics : BasePhonetics
     {
         get { return _WORDMIDDLE; }
     }
-    private
+    private readonly 
        static char[][][] _WORDMIDDLE = new char[][][]
     {
         new char[][]{
@@ -66,7 +66,7 @@ public class GeneralPhonetics : BasePhonetics
         get { return _AFTERVOWEL; }
     }
     private
-       static char[][][] _AFTERVOWEL = new char[][][]
+       readonly static char[][][] _AFTERVOWEL = new char[][][]
     {
         new char[][]{
             new char[] {},
@@ -82,7 +82,7 @@ public class GeneralPhonetics : BasePhonetics
     {
         get { return _AFTERNONVOWEL; }
     }
-    private
+    private readonly 
        static char[][][] _AFTERNONVOWEL = new char[][][]
     {
         new char[][]{
