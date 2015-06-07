@@ -9,7 +9,7 @@ public   partial class DaitchMokotoff
     {
         get { return _WORDSTART; }
     }
-    private static char[][][] _WORDSTART = new char[][][]
+    private readonly static char[][][] _WORDSTART = new char[][][]
     {
         new char[][]{
             new char[] { 'S', 'C','H','T','S','C','H' },

@@ -4,11 +4,11 @@
 public  partial class DaitchMokotoff
 {
 
-    public override char[][][] AFTERNONVOWEL
+    public  override char[][][] AFTERNONVOWEL
     {
         get { return _AFTERNONVOWEL; }
     }
-    private static char[][][] _AFTERNONVOWEL = new char[][][]
+    private readonly static char[][][] _AFTERNONVOWEL = new char[][][]
     {
         new char[][]{
             new char[] { 'S', 'C','H','T','S','C','H' },

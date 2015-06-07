@@ -8,7 +8,7 @@ public  partial class DaitchMokotoff
     {
         get { return _AFTERVOWEL; }
     }    
-    private  static char[][][] _AFTERVOWEL = new char[][][]
+    private  readonly static char[][][] _AFTERVOWEL = new char[][][]
     {
         new char[][]{
             new char[] { 'S', 'C','H','T','S','C','H' },
