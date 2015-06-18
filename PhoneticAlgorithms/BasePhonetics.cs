@@ -25,22 +25,22 @@ public class BasePhonetics : IDisposable
     /// <param name="inputString">The string for which we want a phonetic encoding</param>
     /// <param name="isCaseSentitive">Flag to indicate whether the input string should be changed to upper case prior 
     /// to computation thereby making the algorithm case insensitive.</param>
-    public BasePhonetics(string inputString, bool isCaseSentitive)
+    public BasePhonetics(SqlString inputString, bool isCaseSentitive)
     {
         _isCaseSensitive = isCaseSentitive;
         _currentCharacterPosition = 0;
         _validCharacterPosition = 0;
-        if (String.IsNullOrEmpty(inputString))
+        if (inputString=="" ||inputString.IsNull)
         {
             inputString = " ";
         }
         if (_isCaseSensitive)
         {
-            _inputArray = inputString.ToCharArray();
+            _inputArray = inputString.ToString().ToCharArray();
         }
         else
         {
-            _inputArray = inputString.ToUpper().ToCharArray();
+            _inputArray = inputString.ToString().ToUpper().ToCharArray();
         }
         
 
@@ -49,7 +49,7 @@ public class BasePhonetics : IDisposable
     /// Regardless of the phonetic algorithm used certain aspects are common across all algorithms.
     /// </summary>
     /// <param name="inputString">The string for which we want a phonetic encoding.</param>
-    public BasePhonetics(string inputString):this(inputString,false)
+    public BasePhonetics(SqlString inputString):this(inputString,false)
     {
     }
 
