@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Data.SqlTypes;
 using System.Text;
 
 
 
 
     public class RefinedSoundex:BaseSoundex{
-        public  RefinedSoundex(string inputString):base(inputString){}
+        public RefinedSoundex(SqlString inputString) : base(inputString) { }
         protected override Char SoundexChar(Char a)
         {
             switch (a)
