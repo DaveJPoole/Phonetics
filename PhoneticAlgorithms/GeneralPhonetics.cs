@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Data.SqlTypes;
 
 public class GeneralPhonetics : BasePhonetics
 {
@@ -96,7 +96,7 @@ public class GeneralPhonetics : BasePhonetics
     private char[] _TwoCharReplaceOne;
     private int _WordEndPosition = 0;
 
-    public GeneralPhonetics(string inputString)
+    public GeneralPhonetics(SqlString inputString)
         : base(inputString)
     {
 
