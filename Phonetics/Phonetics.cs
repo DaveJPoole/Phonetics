@@ -7,11 +7,11 @@ using Microsoft.SqlServer.Server;
 
 public partial class Phonetics
 {
-    [Microsoft.SqlServer.Server.SqlFunction]
-    public static SqlString LongPhonetic(short PhoneticType, String InputString)
+    [Microsoft.SqlServer.Server.SqlFunction (IsDeterministic=true,IsPrecise=true)]
+    public static SqlString LongPhonetic(SqlInt16 PhoneticType, SqlString InputString)
     {
         BasePhonetics PhoneticObject;
-        switch (PhoneticType)
+        switch (PhoneticType.Value)
         {
             case 0:
                 PhoneticObject = new Soundex(InputString);
