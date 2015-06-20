@@ -1,12 +1,11 @@
 using System;
-using System.Data.SqlTypes;
 using System.Collections.Generic;
 using System.Text;
 
 
     public class Soundex:BaseSoundex
     {
-        public Soundex(SqlString inputString) : base(inputString) { }
+        public Soundex(string inputString) : base(inputString) { }
 
         /// <summary>
         /// For a given character return the raw SOUNDEX value.  If the argument is not a letter then return a space.

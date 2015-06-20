@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Data.SqlTypes;
 
 
 
 public class BaseSoundex : BasePhonetics
 {
 
-    public BaseSoundex(SqlString inputString): base(inputString){ }
+    public BaseSoundex(string inputString): base(inputString){ }
 
     /// <summary>
     /// Works forward through the inputArray copying the valid encoded characters to the outputArray.

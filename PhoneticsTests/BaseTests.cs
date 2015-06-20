@@ -53,6 +53,37 @@ namespace PhoneticsTests
             Assert.AreEqual(7, bp.GetOutputLength());
             bp.Dispose();
         }
+
+        [TestMethod]
+        public void Base_FindArrayWithinArrayBadPosition()
+        {
+            char[] arrayToFind = { 'M', 'A', 'C', 'D' };
+            GeneralPhonetics gp = new GeneralPhonetics("Macdonald Smack");
+            Assert.AreEqual(0, gp.ArrayMatchFromPosition(-1, arrayToFind));
+            gp.Dispose();
+        }
+        [TestMethod]
+        public void Base_FindArrayWithinArrayNullArguments()
+        {
+            char[] arrayToFind = { 'M', 'A', 'C', 'D' };
+            GeneralPhonetics gp = new GeneralPhonetics("Macdonald Smack");
+            Assert.AreEqual(0, gp.ArrayMatchFromPosition(0, null));
+            gp.Dispose();
+            gp = new GeneralPhonetics(null);
+            Assert.AreEqual(0, gp.ArrayMatchFromPosition(0, arrayToFind));
+            gp.Dispose();
+        }
+        public void Base_FindArrayWithinArray()
+        {
+            char[] arrayToFind = { 'M', 'A', 'C', 'D' };
+            GeneralPhonetics gp = new GeneralPhonetics("Macdonald Smack");
+            Assert.AreEqual(4, gp.ArrayMatchFromPosition(0, arrayToFind));
+            Assert.AreEqual(3, gp.ArrayMatchFromPosition(11, arrayToFind));
+            Assert.AreEqual(0, gp.ArrayMatchFromPosition(12, arrayToFind));
+
+            gp.Dispose();
+
+        }
         //        [TestMethod]
         //        public void AllRefinedSoundexAlphabeticsTest()
         //        {
@@ -62,36 +93,6 @@ namespace PhoneticsTests
         //                TotalLength += Phonetics.LongPhonetic(1, "A" + Convert.ToChar(i)).ToString().Length;
         //            }
         //            Assert.AreEqual(44, TotalLength);
-        //        }
-        //        [TestMethod]
-        //        public void FindArrayInitialTest()
-        //        {
-        //            char[] anArray={'A','B'};
-        //            Assert.AreEqual(0, Phonetics.ArrayMatchFromPosition(0, null, null));
-        //            Assert.AreEqual(0, Phonetics.ArrayMatchFromPosition(0, null, anArray));
-        //            Assert.AreEqual(0, Phonetics.ArrayMatchFromPosition(0, anArray, null));
-        //            Assert.AreEqual(2, Phonetics.ArrayMatchFromPosition(0, anArray, anArray));
-
-        //        }
-        //        [TestMethod]
-        //        public void FindArrayTest()
-        //        {
-        //            char[] inputArray = { 'M', 'A', 'C','D','O','N','A','L','D',' ','S','M','A','C','K' };
-        //            char[] arrayToFind = { 'M', 'A', 'C','D' };
-
-        //            Assert.AreEqual(4, Phonetics.ArrayMatchFromPosition(0, inputArray, arrayToFind));
-        //            Assert.AreEqual(3, Phonetics.ArrayMatchFromPosition(11, inputArray, arrayToFind));
-        //            Assert.AreEqual(0, Phonetics.ArrayMatchFromPosition(12, inputArray, arrayToFind));
-        //        }
-        //        [TestMethod]
-        //        public void FindArrayTooLong()
-        //        {
-        //            char[] inputArray = { 'M', 'A', 'C', 'D', 'O', 'N', 'A', 'L', 'D', ' ', 'S', 'M', 'A', 'C', 'K' };
-        //            char[] arrayToFind = { 'K', ' ' };
-        //            Assert.AreEqual(0, Phonetics.ArrayMatchFromPosition( - 1, inputArray, arrayToFind));
-        //            Assert.AreEqual(1, Phonetics.ArrayMatchFromPosition(inputArray.Length - 1, inputArray, arrayToFind));
-        //            Assert.AreEqual(0, Phonetics.ArrayMatchFromPosition(inputArray.Length + 1, inputArray, arrayToFind));
-
         //        }
         //        [TestMethod]
         //        public void ReplaceArrayInitialTest()

@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using Microsoft.SqlServer.Server;
 
 
 /// <summary>
@@ -25,12 +22,12 @@ public class BasePhonetics : IDisposable
     /// <param name="inputString">The string for which we want a phonetic encoding</param>
     /// <param name="isCaseSentitive">Flag to indicate whether the input string should be changed to upper case prior 
     /// to computation thereby making the algorithm case insensitive.</param>
-    public BasePhonetics(SqlString inputString, bool isCaseSentitive)
+    public BasePhonetics(string inputString, bool isCaseSentitive)
     {
         _isCaseSensitive = isCaseSentitive;
         _currentCharacterPosition = 0;
         _validCharacterPosition = 0;
-        if (inputString=="" ||inputString.IsNull)
+        if (String.IsNullOrEmpty(inputString))
         {
             inputString = " ";
         }
@@ -49,7 +46,7 @@ public class BasePhonetics : IDisposable
     /// Regardless of the phonetic algorithm used certain aspects are common across all algorithms.
     /// </summary>
     /// <param name="inputString">The string for which we want a phonetic encoding.</param>
-    public BasePhonetics(SqlString inputString):this(inputString,false)
+    public BasePhonetics(string inputString):this(inputString,false)
     {
     }
 
@@ -167,7 +164,10 @@ public class BasePhonetics : IDisposable
         if (disposing)
         {
             Array.Clear(_inputArray, 0, _inputArray.Length);
-            Array.Clear(_outputArray, 0, _inputArray.Length);
+            if (_outputArray != null)
+            {
+                Array.Clear(_outputArray, 0, _outputArray.Length);
+            }
         }
 
     }

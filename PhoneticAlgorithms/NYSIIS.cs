@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Text;
-using System.Threading.Tasks;
 
 
 public partial class NYSIIS : GeneralPhonetics
 {
  
-    public NYSIIS(SqlString inputString) : base(inputString) { }
+    public NYSIIS(string inputString) : base(inputString) { }
 
     /// <summary>
     /// All phonetic algorithms have a set of actions that involve some combination of start of word, end of word, middle of word, after vowel,

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Text;
-using System.Threading.Tasks;
 
 public partial class DaitchMokotoff : GeneralPhonetics
 {
-    public DaitchMokotoff(SqlString inputString) : base(inputString) {
+    public DaitchMokotoff(string inputString) : base(inputString) {
         TwoCharacterReplacements = new char[] { 'X' }; 
     }
 

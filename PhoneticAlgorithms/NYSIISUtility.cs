@@ -20,6 +20,10 @@ public partial class NYSIIS
     {
         get { return _WORDEND; }
     }
+    /// <summary>
+    /// When used for SQLCLR functions static arrays have to be declared as readonly if the consuming code
+    /// is to execute in SAFE mode.
+    /// </summary>
     private readonly static char[][][] _WORDSTART = new char[][][]
     {
         new char[][]{
