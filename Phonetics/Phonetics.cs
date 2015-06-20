@@ -7,26 +7,38 @@ using Microsoft.SqlServer.Server;
 
 public partial class Phonetics
 {
-    [Microsoft.SqlServer.Server.SqlFunction (IsDeterministic=true,IsPrecise=true)]
+    [Microsoft.SqlServer.Server.SqlFunction (IsDeterministic=true,IsPrecise=true,DataAccess=DataAccessKind.None)]
     public static SqlString LongPhonetic(SqlInt16 PhoneticType, SqlString InputString)
     {
         BasePhonetics PhoneticObject;
+
+        string _inputString;
+
+        if (InputString.IsNull || InputString.Value.Trim() == String.Empty)
+        {
+            _inputString = " ";
+        }
+        else
+        {
+            _inputString = InputString.Value;
+        }
+
         switch (PhoneticType.Value)
         {
             case 0:
-                PhoneticObject = new Soundex(InputString);
+                PhoneticObject = new Soundex(_inputString);
                 break;
             case 1:
-                PhoneticObject = new RefinedSoundex(InputString);
+                PhoneticObject = new RefinedSoundex(_inputString);
                 break;
             case 2:
-                PhoneticObject = new NYSIIS(InputString);
+                PhoneticObject = new NYSIIS(_inputString);
                 break;
             case 3:
-                PhoneticObject = new DaitchMokotoff(InputString);
+                PhoneticObject = new DaitchMokotoff(_inputString);
                 break;
             default:
-                PhoneticObject = new Soundex(InputString);
+                PhoneticObject = new Soundex(_inputString);
                 PhoneticType = 0;
                 break;
         }
