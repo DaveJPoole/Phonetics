@@ -19,6 +19,7 @@ public partial class DaitchMokotoff : GeneralPhonetics
         bool stopProccessingFlag = false;
         if (IsStartOfWord())
         {
+            GetWordEnd(_currentCharacterPosition);
             if (!(ProcessWordStart()))
             {
                 _outputArray[_validCharacterPosition++] = _inputArray[_currentCharacterPosition];
