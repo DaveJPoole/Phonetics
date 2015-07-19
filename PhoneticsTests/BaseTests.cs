@@ -73,6 +73,7 @@ namespace PhoneticsTests
             Assert.AreEqual(0, gp.ArrayMatchFromPosition(0, arrayToFind));
             gp.Dispose();
         }
+        [TestMethod]
         public void Base_FindArrayWithinArray()
         {
             char[] arrayToFind = { 'M', 'A', 'C', 'D' };
@@ -84,60 +85,58 @@ namespace PhoneticsTests
             gp.Dispose();
 
         }
-        //        [TestMethod]
-        //        public void AllRefinedSoundexAlphabeticsTest()
-        //        {
-        //            int TotalLength = 0;
-        //            for (int i = Convert.ToInt32('A'); i <= Convert.ToInt32('Z'); i++)
-        //            {
-        //                TotalLength += Phonetics.LongPhonetic(1, "A" + Convert.ToChar(i)).ToString().Length;
-        //            }
-        //            Assert.AreEqual(44, TotalLength);
-        //        }
-        //        [TestMethod]
-        //        public void ReplaceArrayInitialTest()
-        //        {
-        //            int x=0,y=x;
-        //            char[] inputArray = { 'A', 'B' };
-        //            char[] outputArray = { 'A', 'B' };
-        //            char[] arrayToFind = { 'A' };
-        //            char[] arrayToReplace = { 'C' };
-        //            Phonetics.ArrayReplaceFromPosition(ref x, ref y, inputArray, outputArray, null, null);
-        //            CollectionAssert.AreEqual(inputArray, outputArray);
-        //            Phonetics.ArrayReplaceFromPosition(ref x, ref y, inputArray, outputArray, null, arrayToReplace);
-        //            CollectionAssert.AreEqual(inputArray, outputArray);
-        //            Phonetics.ArrayReplaceFromPosition(ref x, ref y, inputArray, outputArray, arrayToFind, null);
-        //            CollectionAssert.AreEqual(inputArray, outputArray);
-        //           Phonetics.ArrayReplaceFromPosition(ref x, ref y, inputArray, outputArray, arrayToFind, arrayToReplace);
-        //           CollectionAssert.AreEqual(new char[] { 'C', 'B' }, outputArray);
-        //        }
-        //        [TestMethod]
-        //        public void ReplaceArrayTwoLetterTest()
-        //        {
-        //            int validCharacterPosition = 0, currentCharacterPosition = validCharacterPosition;
-        //            char[] inputArray = { 'P', 'H', 'I', 'L', 'I', 'P', ' ', 'R', 'A', 'P', 'H', 'A', 'E', 'L' };
-        //            char[] testArray = { 'F', 'H', 'I', 'L', 'I', 'P', ' ', 'R', 'A', 'P', 'H', 'A', 'E', 'L' };
-        //            char[] outputArray = (char[])inputArray.Clone();
+        [TestMethod]
+        public void Base_InvalidInputFindWordEnd()
+        {
+            GeneralPhonetics gp = new GeneralPhonetics("Macdonald Smack");
+            gp.GetWordEnd(-1);
+            Assert.AreEqual(8, gp.WordEndPosition);
+            gp.GetWordEnd(int.MaxValue);
+            Assert.AreEqual(8, gp.WordEndPosition);
+            gp.Dispose();
 
-        //            char[]arrayToFind={'P','H'};
-        //            char[]arrayToReplace={'F'};
+        }
+        [TestMethod]
+        public void Base_FirstFindWordEnd()
+        {
+            GeneralPhonetics gp = new GeneralPhonetics("Macdonald Smack");
+            gp.GetWordEnd(0);
+            Assert.AreEqual(8, gp.WordEndPosition);
+            gp.GetWordEnd(2);
+            Assert.AreEqual(8, gp.WordEndPosition);
+            gp.Dispose();
 
+        }
+        [TestMethod]
+        public void Base_LastFindWordEnd()
+        {
+            GeneralPhonetics gp = new GeneralPhonetics("Macdonald Smack");
+            gp.GetWordEnd(9);
+            Assert.AreEqual(14, gp.WordEndPosition);
+            gp.GetWordEnd(10);
+            Assert.AreEqual(14, gp.WordEndPosition);
+            gp.Dispose();
 
-        //            Phonetics.ArrayReplaceFromPosition(ref validCharacterPosition, ref currentCharacterPosition, inputArray, outputArray, arrayToFind, arrayToReplace);
-        //            Assert.AreEqual(1, validCharacterPosition);
-        //            Assert.AreEqual(2, currentCharacterPosition);
-        //            CollectionAssert.AreEqual(testArray, outputArray);
+        }
 
-        //            currentCharacterPosition = 9;
-        //            validCharacterPosition = 9;
-        //            inputArray = new char[] {'P', 'H', 'I', 'L', 'I', 'P', ' ', 'R', 'A', 'P', 'H', 'A', 'E', 'L' };
-        //            outputArray = (char[])inputArray.Clone();
-        //            testArray = new char[]{ 'P', 'H', 'I', 'L', 'I', 'P', ' ', 'R', 'A', 'F', 'H', 'A', 'E', 'L' };
-        //            Phonetics.ArrayReplaceFromPosition(ref validCharacterPosition, ref currentCharacterPosition, inputArray, outputArray, arrayToFind, arrayToReplace);
-        //            Assert.AreEqual(10, validCharacterPosition);
-        //            Assert.AreEqual(11, currentCharacterPosition);
-        //            CollectionAssert.AreEqual(testArray, outputArray);
-        //        }
+        [TestMethod]
+        public void Base_BeyondLastWordFindWordEnd()
+        {
+            GeneralPhonetics gp = new GeneralPhonetics("Macdonald Smack 1234567890");
+            gp.GetWordEnd(20);
+            Assert.AreEqual(14, gp.WordEndPosition);
+            gp.Dispose();
+
+        }
+        [TestMethod]
+        public void Base_NoWordFindWordEnd()
+        {
+            GeneralPhonetics gp = new GeneralPhonetics("----");
+            gp.GetWordEnd(2);
+            Assert.AreEqual(0, gp.WordEndPosition);
+            gp.Dispose();
+
+        }
         #endregion
 
     }
