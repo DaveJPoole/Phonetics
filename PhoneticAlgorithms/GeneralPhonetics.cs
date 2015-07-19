@@ -14,7 +14,7 @@ public class GeneralPhonetics : BasePhonetics
     {
         get { return _WORDSTART; }
     }
-    private readonly 
+    private readonly
        static char[][][] _WORDSTART = new char[][][]
     {
         new char[][]{
@@ -30,7 +30,7 @@ public class GeneralPhonetics : BasePhonetics
     {
         get { return _WORDEND; }
     }
-    private readonly 
+    private readonly
        static char[][][] _WORDEND = new char[][][]
     {
         new char[][]{
@@ -46,7 +46,7 @@ public class GeneralPhonetics : BasePhonetics
     {
         get { return _WORDMIDDLE; }
     }
-    private readonly 
+    private readonly
        static char[][][] _WORDMIDDLE = new char[][][]
     {
         new char[][]{
@@ -80,7 +80,7 @@ public class GeneralPhonetics : BasePhonetics
     {
         get { return _AFTERNONVOWEL; }
     }
-    private readonly 
+    private readonly
        static char[][][] _AFTERNONVOWEL = new char[][][]
     {
         new char[][]{
@@ -89,7 +89,7 @@ public class GeneralPhonetics : BasePhonetics
         }
     };
 
-#endregion
+    #endregion
 
     private char[] _TwoCharReplaceOne;
     private int _WordEndPosition = 0;
@@ -100,7 +100,7 @@ public class GeneralPhonetics : BasePhonetics
 
     }
 
-   /// <summary>
+    /// <summary>
     /// Works forward through the inputArray copying the valid encoded characters to the outputArray.
     /// This overridden method allows for the situation where the final character is a vowel and therefore 
     /// encoded as '0'.
@@ -111,7 +111,7 @@ public class GeneralPhonetics : BasePhonetics
     }
 
 
-       /// <summary>
+    /// <summary>
     /// Useful for itterating through the bog standard soundex where it is simply a character by character implementation
     /// </summary>
     /// <param name="validCharacterPosition">The last valid character position</param>
@@ -136,11 +136,15 @@ public class GeneralPhonetics : BasePhonetics
     /// From that point the algorithm iterates forward until the next non-letter is detected and records the position of the last
     /// character of the word.  The algorithm will work where the end of the string is the last letter
     /// </summary>
+    /// <param name="currentCharacterPosition">The starting position within the inputArray parameter from which the end of word will be calculated.</param>
     /// <returns>The character position of the last letter of the word from the starting position.</returns>
-    public int FindWordEnd()
+    public void GetWordEnd(int currentCharacterPosition)
     {
-        int x = _currentCharacterPosition;
-        for (; +_currentCharacterPosition < _inputArray.Length; x++)
+        int x = currentCharacterPosition < 0 ? 0 : currentCharacterPosition;
+
+        // Scan forward until you run until you hit a non-letter indicating end-of-word
+        // or hit the end of the array
+        for (; x < _inputArray.Length; x++)
         {
             if (char.IsLetter(_inputArray[x]))
             {
@@ -148,24 +152,45 @@ public class GeneralPhonetics : BasePhonetics
             }
         }
 
-        for (; _currentCharacterPosition < _inputArray.Length; x++)
+        // If you are at the end of the array then scan backwards until you reach the first letter
+        // which is by definition the end of a word
+        if (x == _inputArray.Length)
         {
-            if (!char.IsLetter(_inputArray[x]))
+            x--;
+            for (; x > 0; x--)
             {
-                _WordEndPosition = x - 1;
-                break;
+                if (char.IsLetter(_inputArray[x]))
+                {
+                    _WordEndPosition = x;
+                    break;
+                }
             }
-            if (_WordEndPosition <= 0)
+        }
+        else
+        {
+            // Scan forward for the first non-letter indicating the end of the word.
+            for (; x < _inputArray.Length; x++)
+            {
+                if (!char.IsLetter(_inputArray[x]))
+                {
+                    _WordEndPosition = x - 1;
+                    break;
+                }
+            }
+            if (x == _inputArray.Length)
             {
                 _WordEndPosition = _inputArray.Length - 1;
             }
         }
-        return _WordEndPosition;
+
 
     }
+
     /// <summary>
-    /// Returns the character position of the end of the array.
+    /// Returns the character position of the current word.
     /// </summary>
+    /// <remarks>Where the supplied position is negative then the start of the array will be assumed.<br />
+    /// Where the supplied position is at the end of the array then the last position in the array will be assumed.</remarks>
     public int WordEndPosition
     {
         get
@@ -197,6 +222,16 @@ public class GeneralPhonetics : BasePhonetics
             }
         }
         return AdditionalCharacters;
+    }
+    /// <summary>
+    /// The outputArray is generally the same length as the inputArray however for certain algorithmns some characters
+    /// such as C, J and X can be replaced by more than one character.  In such a situation the outputArray can actually be lower than the input.
+    /// </summary>
+    /// <remarks>It is highly unlikely (but not impossible) that the outputArray will be longer than the inputArray</remarks>
+    /// <returns>An integer value containing the length of the outputArray.</returns>
+    public int GetOutputLength()
+    {
+        return _outputArray.Length;
     }
 
     /// <summary>
@@ -252,7 +287,7 @@ public class GeneralPhonetics : BasePhonetics
                 int x = 0;
                 //The default Iterate method always adds one so we always add one less than the length of the 
                 // array we are trying to find.
-                _currentCharacterPosition += arrayToFind.Length-1; 
+                _currentCharacterPosition += arrayToFind.Length - 1;
                 for (x = 0; x < arraytoReplace.Length; x++)
                 {
                     _outputArray[_validCharacterPosition + x] = arraytoReplace[x];
@@ -272,10 +307,12 @@ public class GeneralPhonetics : BasePhonetics
     public void CleanOutputArray()
     {
         _currentCharacterPosition = 1;
-        _validCharacterPosition=0;
+        _validCharacterPosition = 0;
 
-        while(_currentCharacterPosition<_outputArray.Length){
-            if(!(_outputArray[_currentCharacterPosition]==_outputArray[_validCharacterPosition])){
+        while (_currentCharacterPosition < _outputArray.Length)
+        {
+            if (!(_outputArray[_currentCharacterPosition] == _outputArray[_validCharacterPosition]))
+            {
                 _outputArray[++_validCharacterPosition] = _outputArray[_currentCharacterPosition];
             }
             _currentCharacterPosition++;
@@ -288,13 +325,15 @@ public class GeneralPhonetics : BasePhonetics
         {
             _outputArray[_validCharacterPosition++] = ' ';
         }
-        
+
     }
 
     /// <summary>
     /// The actions necessary to carry out character substitutions is common across most transformations.
     /// The bit that varies is the array containing the character patterns and their appropriate replacement.
     /// </summary>
+    /// <remarks>There is a small optimisation that detects whether the array to find is longer than the number of remaining
+    /// letters in the current word.  If so then there is no point carrying out the more detailed evaluation.</remarks>
     /// <param name="pairSubsitution">The char[][][] array containing the character substitutions</param>
     /// <returns>True if a replacement has been made successfully</returns>
     public bool ProcessWordPart(char[][][] pairSubsitution)
@@ -302,10 +341,13 @@ public class GeneralPhonetics : BasePhonetics
         bool returnValue = false;
         for (int i = 0; i < pairSubsitution.Length; i++)
         {
-            if (ArrayMatchFromPosition(_currentCharacterPosition, pairSubsitution[i][0]) == pairSubsitution[i][0].Length)
+            if (pairSubsitution[i][0].Length <= 1 + WordEndPosition - _currentCharacterPosition)
             {
-                returnValue = ArrayReplaceFromPosition(pairSubsitution[i][0], pairSubsitution[i][1]);
-                if (returnValue) { break; }
+                if (ArrayMatchFromPosition(_currentCharacterPosition, pairSubsitution[i][0]) == pairSubsitution[i][0].Length)
+                {
+                    returnValue = ArrayReplaceFromPosition(pairSubsitution[i][0], pairSubsitution[i][1]);
+                    if (returnValue) { break; }
+                }
             }
         }
         return returnValue;
@@ -324,26 +366,30 @@ public class GeneralPhonetics : BasePhonetics
 
     }
 
-    
+
     ///// <summary>
     /// Detects whether or not a substitution can be made at the end of the word.
     /// </summary>
+    /// <remarks>A minor optimimisation is to detect whether the length of the substitution would go beyond the end of
+    /// a word and therefore do not bother with the full evaluation.</remarks>
     /// <returns>TRUE = An 'n' character substitution was achieved at the end of a word.</returns>
     public bool ProcessWordEnd()
     {
         bool returnValue = false;
         for (int i = 0; i < WORDEND.Length; i++)
         {
-            if (ArrayMatchFromPosition(_currentCharacterPosition, WORDEND[i][0]) == WORDEND[i][0].Length)
+            if (WORDEND[i][0].Length == 1 + _WordEndPosition - _currentCharacterPosition)
             {
-                if ((WORDEND[i][0].Length + _currentCharacterPosition == _inputArray.Length)
-                    || (!char.IsLetter(_inputArray[_currentCharacterPosition + WORDEND[i][0].Length])))
+                if (ArrayMatchFromPosition(_currentCharacterPosition, WORDEND[i][0]) == WORDEND[i][0].Length)
                 {
-                    returnValue = ArrayReplaceFromPosition(WORDEND[i][0], WORDEND[i][1]);
-                    if (returnValue) { break; }
+                    if ((WORDEND[i][0].Length + _currentCharacterPosition == _inputArray.Length)
+                        || (!char.IsLetter(_inputArray[_currentCharacterPosition + WORDEND[i][0].Length])))
+                    {
+                        returnValue = ArrayReplaceFromPosition(WORDEND[i][0], WORDEND[i][1]);
+                        if (returnValue) { break; }
+                    }
                 }
             }
-
         }
         return returnValue;
 
@@ -369,7 +415,7 @@ public class GeneralPhonetics : BasePhonetics
         return returnValue;
 
     }
- 
+
     /// <summary>
     /// Carries out any character substitution necessary where a valid letter that is a non-vowel is detected as the preceding character.
     /// </summary>
@@ -387,5 +433,30 @@ public class GeneralPhonetics : BasePhonetics
     {
         return ProcessWordPart(AFTERVOWEL);
     }
+    /// <summary>
+    /// Simply identifies whether a letter is one of the five standard vowels.
+    /// </summary>
+    /// <param name="a">The char value</param>
+    /// <returns>TRUE = a vowel has been identified, FALSE = It isn't a standard vowel.</returns>
+    public static bool isVowel(char a)
+    {
+        bool returnValue = false;
+        switch (a)
+        {
+            case 'A':
+            case 'E':
+            case 'I':
+            case 'O':
+            case 'U':
+                returnValue = true;
+                break;
+            default:
+                returnValue = false;
+                break;
+        }
+
+        return returnValue;
+    }
+
 }
 
