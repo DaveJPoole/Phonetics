@@ -50,18 +50,7 @@ public class BasePhonetics : IDisposable
     {
     }
 
-    /// <summary>
-    /// The outputArray is generally the same length as the inputArray however for certain algorithmns some characters
-    /// such as C, J and X can be replaced by more than one character.  In such a situation the outputArray can actually be loner than the input.
-    /// </summary>
-    /// <remarks>It is highly unlikely (but not impossible) that the outputArray will be longer than the inputArray</remarks>
-    /// <returns>An integer value containing the length of the outputArray.</returns>
-    public int GetOutputLength()
-    {
-        return _outputArray.Length;
-    }
 
-    
 
     /// <summary>
     /// Works out the maximum possible length of the output array factoring in when input characters require more than one output character.
@@ -104,31 +93,7 @@ public class BasePhonetics : IDisposable
         return new string(_outputArray).Trim();
     }
 
-    /// <summary>
-    /// Simply identifies whether a letter is one of the five standard vowels.
-    /// </summary>
-    /// <param name="a">The char value</param>
-    /// <returns>TRUE = a vowel has been identified, FALSE = It isn't a standard vowel.</returns>
-    public static bool isVowel(char a)
-    {
-        bool returnValue = false;
-        switch (a)
-        {
-            case 'A':
-            case 'E':
-            case 'I':
-            case 'O':
-            case 'U':
-                returnValue = true;
-                break;
-            default:
-                returnValue = false;
-                break;
-        }
-
-        return returnValue;
-    }
-
+ 
     /// <summary>
     /// Detects an occurrence of a letter either following a non-letter or in the first position in a string and deems this to be the start of a word.
     /// </summary>
