@@ -142,22 +142,22 @@ public class GeneralPhonetics : BasePhonetics
     {
         int x = currentCharacterPosition < 0 ? 0 : currentCharacterPosition;
 
+        if (x >= _inputArray.Length) { x = _inputArray.Length; }
+
         // Scan forward until you run until you hit a non-letter indicating end-of-word
         // or hit the end of the array
         for (; x < _inputArray.Length; x++)
         {
-            if (char.IsLetter(_inputArray[x]))
+            if (!char.IsLetter(_inputArray[x]))
             {
                 break;
             }
         }
 
-        // If you are at the end of the array then scan backwards until you reach the first letter
-        // which is by definition the end of a word
-        if (x == _inputArray.Length)
-        {
-            x--;
-            for (; x > 0; x--)
+        if (x == _inputArray.Length){x--;}
+
+        //Scan backwards until you hit a letter as this will be the end of the word.
+        for (; x > 0; x--)
             {
                 if (char.IsLetter(_inputArray[x]))
                 {
@@ -165,25 +165,6 @@ public class GeneralPhonetics : BasePhonetics
                     break;
                 }
             }
-        }
-        else
-        {
-            // Scan forward for the first non-letter indicating the end of the word.
-            for (; x < _inputArray.Length; x++)
-            {
-                if (!char.IsLetter(_inputArray[x]))
-                {
-                    _WordEndPosition = x - 1;
-                    break;
-                }
-            }
-            if (x == _inputArray.Length)
-            {
-                _WordEndPosition = _inputArray.Length - 1;
-            }
-        }
-
-
     }
 
     /// <summary>
