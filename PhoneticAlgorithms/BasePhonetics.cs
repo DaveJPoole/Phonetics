@@ -99,7 +99,7 @@ public class BasePhonetics : IDisposable
     /// </summary>
     /// <remarks>This function will be constrained by the ability of char.IsLetter to detect the occurrence of a letter.</remarks>
     /// <returns>TRUE = Start of Word.</returns>
-    public bool IsStartOfWord()
+    public virtual bool IsStartOfWord()
     {
         bool returnValue = false;
         if (_validCharacterPosition == 0 || _outputArray[_validCharacterPosition - 1] == ' ')
