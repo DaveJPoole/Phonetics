@@ -91,8 +91,12 @@ namespace PhoneticsTests
             GeneralPhonetics gp = new GeneralPhonetics("Macdonald Smack");
             gp.GetWordEnd(-1);
             Assert.AreEqual(8, gp.WordEndPosition);
+            gp.Dispose();
+
+
+            gp = new GeneralPhonetics("Macdonald Smack");
             gp.GetWordEnd(int.MaxValue);
-            Assert.AreEqual(8, gp.WordEndPosition);
+            Assert.AreEqual(14, gp.WordEndPosition);
             gp.Dispose();
 
         }
@@ -102,6 +106,10 @@ namespace PhoneticsTests
             GeneralPhonetics gp = new GeneralPhonetics("Macdonald Smack");
             gp.GetWordEnd(0);
             Assert.AreEqual(8, gp.WordEndPosition);
+            gp.Dispose();
+
+
+            gp = new GeneralPhonetics("Macdonald Smack"); 
             gp.GetWordEnd(2);
             Assert.AreEqual(8, gp.WordEndPosition);
             gp.Dispose();
@@ -111,8 +119,6 @@ namespace PhoneticsTests
         public void Base_LastFindWordEnd()
         {
             GeneralPhonetics gp = new GeneralPhonetics("Macdonald Smack");
-            gp.GetWordEnd(9);
-            Assert.AreEqual(14, gp.WordEndPosition);
             gp.GetWordEnd(10);
             Assert.AreEqual(14, gp.WordEndPosition);
             gp.Dispose();
@@ -134,6 +140,15 @@ namespace PhoneticsTests
             GeneralPhonetics gp = new GeneralPhonetics("----");
             gp.GetWordEnd(2);
             Assert.AreEqual(0, gp.WordEndPosition);
+            gp.Dispose();
+
+        }
+        [TestMethod]
+        public void Base_SpaceWordFindWordEnd()
+        {
+            GeneralPhonetics gp = new GeneralPhonetics("Macdonald Smack");
+            gp.GetWordEnd(9);
+            Assert.AreEqual(8, gp.WordEndPosition);
             gp.Dispose();
 
         }
