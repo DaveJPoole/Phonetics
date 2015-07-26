@@ -16,7 +16,6 @@ public partial class NYSIIS : GeneralPhonetics
     {
         if (IsStartOfWord())
         {
-            GetWordEnd(_currentCharacterPosition);
             if (!(ProcessWordStart()))
             {
                 _outputArray[_validCharacterPosition++] = _inputArray[_currentCharacterPosition];

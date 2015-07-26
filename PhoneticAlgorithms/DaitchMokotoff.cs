@@ -14,12 +14,14 @@ public partial class DaitchMokotoff : GeneralPhonetics
         base.Iterate();
     }
 
+    /// <summary>
+    /// The specific implementation of the PhoneticAlgorithm method to run the Daitch-Mokotoff encoding.
+    /// </summary>
     public override void PhoneticAlgorithm()
     {
         bool stopProccessingFlag = false;
         if (IsStartOfWord())
         {
-            GetWordEnd(_currentCharacterPosition);
             if (!(ProcessWordStart()))
             {
                 _outputArray[_validCharacterPosition++] = _inputArray[_currentCharacterPosition];
