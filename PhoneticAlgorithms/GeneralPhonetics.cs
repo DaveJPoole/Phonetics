@@ -110,6 +110,19 @@ public class GeneralPhonetics : BasePhonetics
         base.Iterate();
     }
 
+    /// <summary>
+    /// For the non-soundex algorithms knowing the end of the word allows an small optimisation to short-circuit the evaluation of
+    /// substitution n-grams.
+    /// 1.  At the end of the word only evalute those substitutions that are exactly the length of the number of remaining letters
+    /// 2.  For other substitutions only evaluate those substitutions whose length is not greater in length than the number of remaining letters.
+    /// </summary>
+    /// <returns>True if this is the start of a word.</returns>
+    public override bool IsStartOfWord()
+    {
+        bool returnValue = base.IsStartOfWord();
+        if (returnValue) { GetWordEnd(_currentCharacterPosition); }
+        return returnValue;
+    }
 
     /// <summary>
     /// Useful for itterating through the bog standard soundex where it is simply a character by character implementation
