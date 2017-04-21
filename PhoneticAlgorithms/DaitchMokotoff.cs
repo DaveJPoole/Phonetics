@@ -14,7 +14,7 @@ public partial class DaitchMokotoff : GeneralPhonetics
         base.Iterate();
     }
 
-    /// <summary>
+        /// <summary>
     /// The specific implementation of the PhoneticAlgorithm method to run the Daitch-Mokotoff encoding.
     /// </summary>
     public override void PhoneticAlgorithm()

@@ -37,6 +37,9 @@ public partial class Phonetics
             case 3:
                 PhoneticObject = new DaitchMokotoff(_inputString);
                 break;
+            case 4:
+                PhoneticObject = new Metaphone(_inputString);
+                break;
             default:
                 PhoneticObject = new Soundex(_inputString);
                 PhoneticType = 0;

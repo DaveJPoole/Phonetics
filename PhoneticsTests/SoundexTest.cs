@@ -11,6 +11,10 @@ namespace PhoneticsTests
     [TestClass]
     public class SoundexTests
     {
+        const int SOUNDEX = 0;
+        const int REFINED_SOUNDEX = 1;
+        const int DEFAULT_PHONETIC = 99;
+
         public SoundexTests()
         {
             //
@@ -62,44 +66,44 @@ namespace PhoneticsTests
         [TestMethod]
         public void StartUpTest()
         {
-            Assert.AreEqual("D", Phonetics.LongPhonetic(0, "D"));
-            Assert.AreEqual("D", Phonetics.LongPhonetic(1, "D"));
-            Assert.AreEqual("D", Phonetics.LongPhonetic(99, "D"));
+            Assert.AreEqual("D", Phonetics.LongPhonetic(SOUNDEX, "D"));
+            Assert.AreEqual("D", Phonetics.LongPhonetic(REFINED_SOUNDEX, "D"));
+            Assert.AreEqual("D", Phonetics.LongPhonetic(DEFAULT_PHONETIC, "D"));
         }
        [TestMethod]
         public void SoundexCharTest()
         {
-            Assert.AreEqual("D1", Phonetics.LongPhonetic(0, "Dave"));
-            Assert.AreEqual("D2", Phonetics.LongPhonetic(1, "Dave"));
-            Assert.AreEqual("D1", Phonetics.LongPhonetic(99, "Dave"));
+            Assert.AreEqual("D1", Phonetics.LongPhonetic(SOUNDEX, "Dave"));
+            Assert.AreEqual("D2", Phonetics.LongPhonetic(REFINED_SOUNDEX, "Dave"));
+            Assert.AreEqual("D1", Phonetics.LongPhonetic(DEFAULT_PHONETIC, "Dave"));
         }
         [TestMethod]
         public void LetterOneNotAlphaTest()
         {
-            Assert.AreEqual("D1", Phonetics.LongPhonetic(0, "12Dave"));
-            Assert.AreEqual("D2", Phonetics.LongPhonetic(1, "12Dave"));
-            Assert.AreEqual("D1", Phonetics.LongPhonetic(99, "12Dave"));
+            Assert.AreEqual("D1", Phonetics.LongPhonetic(SOUNDEX, "12Dave"));
+            Assert.AreEqual("D2", Phonetics.LongPhonetic(REFINED_SOUNDEX, "12Dave"));
+            Assert.AreEqual("D1", Phonetics.LongPhonetic(DEFAULT_PHONETIC, "12Dave"));
         }
         [TestMethod]
         public void TwoWordTest()
         {
-            Assert.AreEqual("D1 P4", Phonetics.LongPhonetic(0, "Dave Poole"));
-            Assert.AreEqual("D2 P7", Phonetics.LongPhonetic(1, "Dave Poole"));
-            Assert.AreEqual("D1 P4", Phonetics.LongPhonetic(0, "Dave Poole"));
+            Assert.AreEqual("D1 P4", Phonetics.LongPhonetic(SOUNDEX, "Dave Poole"));
+            Assert.AreEqual("D2 P7", Phonetics.LongPhonetic(REFINED_SOUNDEX, "Dave Poole"));
+            Assert.AreEqual("D1 P4", Phonetics.LongPhonetic(SOUNDEX, "Dave Poole"));
         }
         [TestMethod]
         public void LlangollenTest()
         {
-            Assert.AreEqual("L5245", Phonetics.LongPhonetic(0, "llangollen"));
-            Assert.AreEqual("L8478", Phonetics.LongPhonetic(1, "llangollen"));
-            Assert.AreEqual("L5245", Phonetics.LongPhonetic(99, "llangollen"));
+            Assert.AreEqual("L5245", Phonetics.LongPhonetic(SOUNDEX, "llangollen"));
+            Assert.AreEqual("L8478", Phonetics.LongPhonetic(REFINED_SOUNDEX, "llangollen"));
+            Assert.AreEqual("L5245", Phonetics.LongPhonetic(DEFAULT_PHONETIC, "llangollen"));
         }
         [TestMethod]
         public void LlangollenHeritageRailwayTest()
         {
-            Assert.AreEqual("L5245 H632 R4", Phonetics.LongPhonetic(0, "llangollen heritage railway"));
-            Assert.AreEqual("L8478 H964 R7", Phonetics.LongPhonetic(1, "llangollen heritage railway"));
-            Assert.AreEqual("L5245 H632 R4", Phonetics.LongPhonetic(99, "llangollen heritage railway"));
+            Assert.AreEqual("L5245 H632 R4", Phonetics.LongPhonetic(SOUNDEX, "llangollen heritage railway"));
+            Assert.AreEqual("L8478 H964 R7", Phonetics.LongPhonetic(REFINED_SOUNDEX, "llangollen heritage railway"));
+            Assert.AreEqual("L5245 H632 R4", Phonetics.LongPhonetic(DEFAULT_PHONETIC, "llangollen heritage railway"));
         }
         [TestMethod]
         public void AllAlphabeticsTest()
@@ -107,7 +111,7 @@ namespace PhoneticsTests
             int TotalLength = 0;
             for (int i = Convert.ToInt32('A'); i <= Convert.ToInt32('Z'); i++)
             {
-                TotalLength += Phonetics.LongPhonetic(0, "A" + Convert.ToChar(i)).ToString().Length;
+                TotalLength += Phonetics.LongPhonetic(SOUNDEX, "A" + Convert.ToChar(i)).ToString().Length;
             }
             Assert.AreEqual(44, TotalLength);
         }

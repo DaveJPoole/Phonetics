@@ -46,6 +46,8 @@
     <Compile Include="DaitchMokotoffUtility_NONVOWEL.cs" />
     <Compile Include="DaitchMokotoffUtility_VOWEL.cs" />
     <Compile Include="GeneralPhonetics.cs" />
+    <Compile Include="Metaphone.cs" />
+    <Compile Include="MetaphoneWordBoundary.cs" />
     <Compile Include="NYSIIS.cs" />
     <Compile Include="NYSIISUtility.cs" />
     <Compile Include="RefinedSoundex.cs" />
