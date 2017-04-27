@@ -9,14 +9,86 @@ namespace PhoneticsTests
         const int METAPHONE = 4;
 
         [TestMethod]
-        public void MetaphoneStart()
+        public void MetaphoneStart_ThreeLetterSubsitutitions()
         {
-            Assert.AreEqual("N", Phonetics.LongPhonetic(METAPHONE, "KN"));
-            Assert.AreEqual("N", Phonetics.LongPhonetic(METAPHONE, "GN"));
-            Assert.AreEqual("N", Phonetics.LongPhonetic(METAPHONE, "PN"));
+            Assert.AreEqual("X", Phonetics.LongPhonetic(METAPHONE, "CIA"));
+            Assert.AreEqual("J", Phonetics.LongPhonetic(METAPHONE, "DGE"));
+            Assert.AreEqual("J", Phonetics.LongPhonetic(METAPHONE, "DGI"));
+            Assert.AreEqual("J", Phonetics.LongPhonetic(METAPHONE, "DGY"));
+            Assert.AreEqual("SX", Phonetics.LongPhonetic(METAPHONE, "SCH"));
+            Assert.AreEqual("X", Phonetics.LongPhonetic(METAPHONE, "TIA"));
+            Assert.AreEqual("X", Phonetics.LongPhonetic(METAPHONE, "TCH"));
+            Assert.AreEqual("X", Phonetics.LongPhonetic(METAPHONE, "TIO"));
+
+        }
+
+        [TestMethod]
+        public void MetaphoneStart_Pair()
+        {
             Assert.AreEqual("E", Phonetics.LongPhonetic(METAPHONE, "AE"));
+            Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "CI"));
+            Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "CE"));
+            Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "CY"));
+            Assert.AreEqual("N", Phonetics.LongPhonetic(METAPHONE, "GN"));
+            Assert.AreEqual("N", Phonetics.LongPhonetic(METAPHONE, "KN"));
+            Assert.AreEqual("F", Phonetics.LongPhonetic(METAPHONE, "PH"));
+            Assert.AreEqual("N", Phonetics.LongPhonetic(METAPHONE, "PN"));
+            Assert.AreEqual("X", Phonetics.LongPhonetic(METAPHONE, "SH"));
+            Assert.AreEqual("0", Phonetics.LongPhonetic(METAPHONE, "TH"));
             Assert.AreEqual("R", Phonetics.LongPhonetic(METAPHONE, "WR"));
+        }
+
+        [TestMethod]
+        public void MetaphoneStart_Y()
+        {
+            Assert.AreEqual("K", Phonetics.LongPhonetic(METAPHONE, "YC"));
+            Assert.AreEqual("T", Phonetics.LongPhonetic(METAPHONE, "YD"));
+            Assert.AreEqual("K", Phonetics.LongPhonetic(METAPHONE, "YG"));
+            Assert.AreEqual("K", Phonetics.LongPhonetic(METAPHONE, "YQ"));
+            Assert.AreEqual("F", Phonetics.LongPhonetic(METAPHONE, "YV"));
+            Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "YX"));
+            Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "YZ"));
+            for (int i = Convert.ToInt32('A'); i <= Convert.ToInt32('Z'); i++)
+            {
+                Assert.AreEqual(1, Phonetics.LongPhonetic(METAPHONE, 'Y' + Convert.ToChar(i).ToString()).ToString().Length);
+            }
+
+        }
+
+        [TestMethod]
+        public void MetaphoneStart_SameSingle()
+        {
+            Assert.AreEqual("A", Phonetics.LongPhonetic(METAPHONE, "A"));
+            Assert.AreEqual("B", Phonetics.LongPhonetic(METAPHONE, "B"));
+            Assert.AreEqual("E", Phonetics.LongPhonetic(METAPHONE, "E"));
+            Assert.AreEqual("F", Phonetics.LongPhonetic(METAPHONE, "F"));
+            Assert.AreEqual("H", Phonetics.LongPhonetic(METAPHONE, "H"));
+            Assert.AreEqual("I", Phonetics.LongPhonetic(METAPHONE, "I"));
+            Assert.AreEqual("J", Phonetics.LongPhonetic(METAPHONE, "J"));
+            Assert.AreEqual("K", Phonetics.LongPhonetic(METAPHONE, "K"));
+            Assert.AreEqual("L", Phonetics.LongPhonetic(METAPHONE, "L"));
+            Assert.AreEqual("M", Phonetics.LongPhonetic(METAPHONE, "M"));
+            Assert.AreEqual("N", Phonetics.LongPhonetic(METAPHONE, "N"));
+            Assert.AreEqual("O", Phonetics.LongPhonetic(METAPHONE, "O"));
+            Assert.AreEqual("P", Phonetics.LongPhonetic(METAPHONE, "P"));
+            Assert.AreEqual("R", Phonetics.LongPhonetic(METAPHONE, "R"));
+            Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "S"));
+            Assert.AreEqual("T", Phonetics.LongPhonetic(METAPHONE, "T"));
+            Assert.AreEqual("U", Phonetics.LongPhonetic(METAPHONE, "U"));
+            Assert.AreEqual("W", Phonetics.LongPhonetic(METAPHONE, "W"));
+            Assert.AreEqual("Y", Phonetics.LongPhonetic(METAPHONE, "Y"));
+        }
+
+        [TestMethod]
+        public void MetaphoneStart_SubstituteSingle()
+        {
+            Assert.AreEqual("K", Phonetics.LongPhonetic(METAPHONE, "C"));
+            Assert.AreEqual("T", Phonetics.LongPhonetic(METAPHONE, "D"));
+            Assert.AreEqual("K", Phonetics.LongPhonetic(METAPHONE, "G"));
+            Assert.AreEqual("K", Phonetics.LongPhonetic(METAPHONE, "Q"));
+            Assert.AreEqual("F", Phonetics.LongPhonetic(METAPHONE, "V"));
             Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "X"));
+            Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "Z"));
 
         }
     }
