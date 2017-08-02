@@ -10,4 +10,4 @@ The individual Visual Studio projects in this repo are as follows:-
 |Phonetics|The control class for the algorithm.  It is this that determines which phonetic algorithm is used for a particular task|
 |PhoneticsTests|The tests describe the desired output from an algorithm and are written first, the code to implement the algorithm and hopefully pass the test si then created in the PhoneticAlgorithms project|
 
-There is more on the background to this project under [Phonetics README.MD](Phonetics/Phonetics/README.md)
+There is more on the background to this project under [Phonetics README.MD](Phonetics/README.md)
