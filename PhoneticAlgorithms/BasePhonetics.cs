@@ -128,11 +128,8 @@ public class BasePhonetics : IDisposable
     {
         if (disposing)
         {
-            Array.Clear(_inputArray, 0, _inputArray.Length);
-            if (_outputArray != null)
-            {
-                Array.Clear(_outputArray, 0, _outputArray.Length);
-            }
+            _inputArray = null;
+            _outputArray = null;
         }
 
     }

@@ -167,17 +167,17 @@ public class GeneralPhonetics : BasePhonetics
             }
         }
 
-        if (x == _inputArray.Length){x--;}
+        if (x == _inputArray.Length) { x--; }
 
         //Scan backwards until you hit a letter as this will be the end of the word.
         for (; x > 0; x--)
+        {
+            if (char.IsLetter(_inputArray[x]))
             {
-                if (char.IsLetter(_inputArray[x]))
-                {
-                    _WordEndPosition = x;
-                    break;
-                }
+                _WordEndPosition = x;
+                break;
             }
+        }
     }
 
     /// <summary>
@@ -311,15 +311,40 @@ public class GeneralPhonetics : BasePhonetics
             }
             _currentCharacterPosition++;
         }
-        _validCharacterPosition++;
 
+        CleanToEndOfOutputArray(_validCharacterPosition);
+
+    }
+
+    private void CleanToEndOfOutputArray(int _validCharacterPosition)
+    {
         // Once all the duplicate characters have been knocked out we need to make sure that
         //  the rest of the string contains nothing but spaces.
+        _validCharacterPosition++;
         while (_validCharacterPosition < _outputArray.Length)
         {
             _outputArray[_validCharacterPosition++] = ' ';
         }
+    }
 
+    /// <summary>
+    /// Algorithms such as Metaphone have complex logic regarding the position of letters in relation to vowels.  This means
+    /// that the early erasure of vowels can have undesirable consequences hence the need to have a post-processing cleanse.
+    /// </summary>
+    public void StripVowelsFromOutputArray()
+    {
+        _currentCharacterPosition = 1;
+        _validCharacterPosition = 0;
+
+        while (_currentCharacterPosition < _outputArray.Length)
+        {
+            if (!isVowel(_outputArray[_currentCharacterPosition]))
+            {
+                _outputArray[++_validCharacterPosition] = _outputArray[_currentCharacterPosition];
+            }
+            _currentCharacterPosition++;
+        }
+        CleanToEndOfOutputArray(_validCharacterPosition);
     }
 
     /// <summary>

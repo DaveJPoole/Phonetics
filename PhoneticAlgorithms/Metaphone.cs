@@ -12,6 +12,8 @@ public partial class Metaphone : GeneralPhonetics
     public override void Iterate()
     {
         base.Iterate();
+        base.StripVowelsFromOutputArray();
+        base.CleanOutputArray();
     }
     /// <summary>
     /// The specific implementation of the PhoneticAlgorithm method to run the Metaphone encoding.
@@ -27,28 +29,26 @@ public partial class Metaphone : GeneralPhonetics
             }
 
         }
-        //else
-        //{
-        //    if (_currentCharacterPosition > 0 && char.IsLetter(_inputArray[_currentCharacterPosition - 1]))
-        //    {
-        //        if (isVowel(_inputArray[_currentCharacterPosition - 1]))
-        //        {
-        //            stopProccessingFlag = ProcessWordAfterVowel();
-        //        }
-        //        else
-        //        {
-        //            stopProccessingFlag = ProcessWordAfterNonVowel();
-        //        }
+        else
+        {
+            if (_currentCharacterPosition > 0 && char.IsLetter(_inputArray[_currentCharacterPosition - 1]))
+            {
+                if (!ProcessWordEnd())
+                {
+                    if (isVowel(_inputArray[_currentCharacterPosition - 1]))
+                    {
+                        stopProccessingFlag = ProcessWordAfterVowel();
+                    }
+                    if (!stopProccessingFlag) { }
+                        _outputArray[_validCharacterPosition++] = _inputArray[_currentCharacterPosition];
+                }
 
-        //        if (!stopProccessingFlag && !char.IsLetter(_inputArray[_currentCharacterPosition]) && _validCharacterPosition > 0 && _outputArray[_validCharacterPosition - 1] != ' ')
-        //        {
-        //            _outputArray[_validCharacterPosition++] = ' ';
-        //        }
-
-        //    }
-        //}
-
+                if (!stopProccessingFlag && !char.IsLetter(_inputArray[_currentCharacterPosition]) && _validCharacterPosition > 0 && _outputArray[_validCharacterPosition - 1] != ' ')
+                    {
+                        _outputArray[_validCharacterPosition++] = ' ';
+                    }
+                }
+            }
+        }
     }
 
-
-}

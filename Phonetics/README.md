@@ -29,8 +29,8 @@ It has proven to be an educational project in many ways
 |Soundex|COMPLETE|
 |RefinedSoundex|COMPLETE|
 |NYSIIS|COMPLETE|
-|Daitch Mokotoff|Work-in-progress|
-|Metaphone|TODO - Probably Rainbow Unicorn territory|
+|Daitch Mokotoff|Complete|
+|Metaphone|Nearing completion|
 |Caverphone|TODO|
 |ColognePhonetic|TODO|
 

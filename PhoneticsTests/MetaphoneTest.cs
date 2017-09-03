@@ -19,6 +19,7 @@ namespace PhoneticsTests
             Assert.AreEqual("X", Phonetics.LongPhonetic(METAPHONE, "TIA"));
             Assert.AreEqual("X", Phonetics.LongPhonetic(METAPHONE, "TCH"));
             Assert.AreEqual("X", Phonetics.LongPhonetic(METAPHONE, "TIO"));
+            Assert.AreEqual("EH", Phonetics.LongPhonetic(METAPHONE, "EHA"));
 
         }
 
@@ -44,14 +45,12 @@ namespace PhoneticsTests
             Assert.AreEqual("K", Phonetics.LongPhonetic(METAPHONE, "YC"));
             Assert.AreEqual("T", Phonetics.LongPhonetic(METAPHONE, "YD"));
             Assert.AreEqual("K", Phonetics.LongPhonetic(METAPHONE, "YG"));
+            Assert.AreEqual("", Phonetics.LongPhonetic(METAPHONE, "YH"));
             Assert.AreEqual("K", Phonetics.LongPhonetic(METAPHONE, "YQ"));
             Assert.AreEqual("F", Phonetics.LongPhonetic(METAPHONE, "YV"));
+            Assert.AreEqual("", Phonetics.LongPhonetic(METAPHONE, "YW"));
             Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "YX"));
             Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "YZ"));
-            for (int i = Convert.ToInt32('A'); i <= Convert.ToInt32('Z'); i++)
-            {
-                Assert.AreEqual(1, Phonetics.LongPhonetic(METAPHONE, 'Y' + Convert.ToChar(i).ToString()).ToString().Length);
-            }
 
         }
 
@@ -89,6 +88,28 @@ namespace PhoneticsTests
             Assert.AreEqual("F", Phonetics.LongPhonetic(METAPHONE, "V"));
             Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "X"));
             Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "Z"));
+
+        }
+
+        [TestMethod]
+        public void Metaphone_letter_H()
+        {
+            Assert.AreEqual("AH", Phonetics.LongPhonetic(METAPHONE, "AHOY"));
+            Assert.AreEqual("SF", Phonetics.LongPhonetic(METAPHONE, "SIGH"));
+            Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "SAH"));
+            Assert.AreEqual("KST", Phonetics.LongPhonetic(METAPHONE, "GHOST"));
+        }
+
+        [TestMethod]
+        public void Metaphone_SampleWords()
+        {
+            Assert.AreEqual("AB", Phonetics.LongPhonetic(METAPHONE, "ABBEY"));
+        }
+
+        [TestMethod]
+        public void Metaphone_PainInTheArse()
+        {
+            Assert.AreEqual("NSTK", Phonetics.LongPhonetic(METAPHONE, "Gnostic"));
 
         }
     }
