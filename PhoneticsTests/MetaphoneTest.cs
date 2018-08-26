@@ -53,6 +53,12 @@ namespace PhoneticsTests
             Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "YZ"));
 
         }
+        public void MetaphoneLetter_Y()
+        {
+            Assert.AreEqual("SNK", Phonetics.LongPhonetic(METAPHONE, "SYNC"));
+            Assert.AreEqual("SY", Phonetics.LongPhonetic(METAPHONE, "SOYA"));
+
+        }
 
         [TestMethod]
         public void MetaphoneStart_SameSingle()
@@ -107,10 +113,35 @@ namespace PhoneticsTests
         }
 
         [TestMethod]
-        public void Metaphone_PainInTheArse()
+        public void Metaphone_Contains_GN()
         {
             Assert.AreEqual("NSTK", Phonetics.LongPhonetic(METAPHONE, "Gnostic"));
+            Assert.AreEqual("SNT", Phonetics.LongPhonetic(METAPHONE, "Signed"));
+            Assert.AreEqual("SN", Phonetics.LongPhonetic(METAPHONE, "Sign"));
 
+        }
+        [TestMethod]
+        public void Metaphone_Starts_With_Vowel()
+        {
+            Assert.AreEqual("ARMR", Phonetics.LongPhonetic(METAPHONE, "Armour"));
+            Assert.AreEqual("EFR", Phonetics.LongPhonetic(METAPHONE, "Ever"));
+            Assert.AreEqual("INTJR", Phonetics.LongPhonetic(METAPHONE, "Integer"));
+            Assert.AreEqual("ONRS", Phonetics.LongPhonetic(METAPHONE, "ONEROUS"));
+            Assert.AreEqual("UNT", Phonetics.LongPhonetic(METAPHONE, "UNDO"));
+        }
+        [TestMethod]
+        public void Metaphone_letter_X()
+        {
+            Assert.AreEqual("SKS", Phonetics.LongPhonetic(METAPHONE, "Six"));
+            Assert.AreEqual("SKS", Phonetics.LongPhonetic(METAPHONE, "Sixes"));
+            Assert.AreEqual("S", Phonetics.LongPhonetic(METAPHONE, "Xis"));
+        }
+        [TestMethod]
+        public void Metaphone_double_letter_()
+        {
+            Assert.AreEqual("AKSPT", Phonetics.LongPhonetic(METAPHONE, "Accepted"));
+            Assert.AreEqual("ATR", Phonetics.LongPhonetic(METAPHONE, "Adder"));
+            Assert.AreEqual("AKRKXN", Phonetics.LongPhonetic(METAPHONE, "Aggreggation"));
         }
     }
 }

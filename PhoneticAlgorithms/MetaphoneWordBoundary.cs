@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-public partial class Metaphone
+﻿public partial class Metaphone
 {
     public override char[][][] WORDSTART
     {
@@ -506,7 +500,7 @@ public partial class Metaphone
         },
         new char[][]{
             new char[] { 'X' },
-            new char[] {'S'}
+            new char[] {'K','S'}
         },
         new char[][]{
             new char[] { 'Y' },

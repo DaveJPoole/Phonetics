@@ -47,6 +47,7 @@
     <Compile Include="DaitchMokotoffUtility_VOWEL.cs" />
     <Compile Include="GeneralPhonetics.cs" />
     <Compile Include="Metaphone.cs" />
+    <Compile Include="MetaphoneWordMiddle.cs" />
     <Compile Include="Metaphone_VOWEL.cs" />
     <Compile Include="MetaphoneWordBoundary.cs" />
     <Compile Include="NYSIIS.cs" />

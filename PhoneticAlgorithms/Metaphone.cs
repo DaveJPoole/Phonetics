@@ -39,8 +39,14 @@ public partial class Metaphone : GeneralPhonetics
                     {
                         stopProccessingFlag = ProcessWordAfterVowel();
                     }
-                    if (!stopProccessingFlag) { }
+                    else
+                    {
+                        stopProccessingFlag = ProcessWordMiddle();
+                    }
+                    if (!stopProccessingFlag)
+                    {
                         _outputArray[_validCharacterPosition++] = _inputArray[_currentCharacterPosition];
+                    }
                 }
 
                 if (!stopProccessingFlag && !char.IsLetter(_inputArray[_currentCharacterPosition]) && _validCharacterPosition > 0 && _outputArray[_validCharacterPosition - 1] != ' ')

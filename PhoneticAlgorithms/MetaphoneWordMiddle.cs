@@ -1,12 +1,11 @@
-﻿
-
-public partial class Metaphone
+﻿public partial class Metaphone
 {
-    public override char[][][] AFTERVOWEL
+    public override char[][][] WORDMIDDLE
     {
-        get { return _AFTERVOWEL; }
+        get { return _WORDMIDDLE; }
     }
-    private readonly static char[][][] _AFTERVOWEL = new char[][][]
+
+    private readonly static char[][][] _WORDMIDDLE = new char[][][]
     {
         new char[][]{
             new char[] { 'D', 'G','E' },
@@ -49,92 +48,8 @@ public partial class Metaphone
             new char[] {'X'}
         },
         new char[][]{
-            new char[] { 'H', 'A' },
-            new char[] {'H'}
-        },
-        new char[][]{
-            new char[] { 'H', 'B' },
-            new char[] {'B'}
-        },
-        new char[][]{
-            new char[] { 'H', 'C' },
-            new char[] {'K'}
-        },
-        new char[][]{
-            new char[] { 'H', 'D' },
-            new char[] {'T'}
-        },
-        new char[][]{
-            new char[] { 'H', 'E' },
-            new char[] {'H'}
-        },
-        new char[][]{
-            new char[] { 'H', 'F' },
-            new char[] {'F'}
-        },
-        new char[][]{
-            new char[] { 'H', 'G' },
-            new char[] {'K'}
-        },
-        new char[][]{
-            new char[] { 'H', 'I' },
-            new char[] {'H'}
-        },
-        new char[][]{
-            new char[] { 'H', 'J' },
-            new char[] {'J'}
-        },
-        new char[][]{
-            new char[] { 'H', 'K' },
-            new char[] {'K'}
-        },
-        new char[][]{
-            new char[] { 'H', 'L' },
-            new char[] {'L'}
-        },
-        new char[][]{
-            new char[] { 'H', 'M' },
+            new char[] { 'M', 'B' },
             new char[] {'M'}
-        },
-        new char[][]{
-            new char[] { 'H', 'N' },
-            new char[] {'N'}
-        },
-        new char[][]{
-            new char[] { 'H', 'O' },
-            new char[] {'H'}
-        },
-        new char[][]{
-            new char[] { 'H', 'P' },
-            new char[] {'H'}
-        },
-        new char[][]{
-            new char[] { 'H', 'Q' },
-            new char[] {'K'}
-        },
-        new char[][]{
-            new char[] { 'H', 'R' },
-            new char[] {'R'}
-        },
-        new char[][]{
-            new char[] { 'H', 'S' },
-            new char[] {'S'}
-        },
-        new char[][]{
-            new char[] { 'H', 'T' },
-            new char[] {'T'}
-        },
-        new char[][]{
-            new char[] { 'H', 'U' },
-            new char[] {'H'}
-        },
-        new char[][]{
-            new char[] { 'H', 'V' },
-            new char[] {'F'}
-        },
-        new char[][]{
-            new char[] { 'H', 'Z' },
-            new char[] {'S'}
         },
         new char[][]{
             new char[] { 'A', 'E' },
@@ -181,10 +96,6 @@ public partial class Metaphone
             new char[] {'J'}
         },
         new char[][]{
-            new char[] { 'K', 'N' },
-            new char[] {'N'}
-        },
-        new char[][]{
             new char[] { 'P', 'H' },
             new char[] {'F'}
         },
@@ -201,88 +112,12 @@ public partial class Metaphone
             new char[] {'0'}
         },
         new char[][]{
-            new char[] { 'W', 'A' },
-            new char[] {'W'}
-        },
-        new char[][]{
-            new char[] { 'W', 'B' },
-            new char[] {'B'}
-        },
-        new char[][]{
-            new char[] { 'W', 'C' },
-            new char[] {'C'}
-        },
-        new char[][]{
-            new char[] { 'W', 'D' },
-            new char[] {'T'}
-        },
-        new char[][]{
-            new char[] { 'W', 'A' },
-            new char[] {'W'}
-        },
-        new char[][]{
-            new char[] { 'W', 'E' },
-            new char[] {'W'}
-        },
-        new char[][]{
-            new char[] { 'W', 'G' },
-            new char[] {'K'}
-        },
-        new char[][]{
-            new char[] { 'W', 'I' },
-            new char[] {'W'}
-        },
-        new char[][]{
-            new char[] { 'W', 'J' },
-            new char[] {'J'}
-        },
-        new char[][]{
-            new char[] { 'W', 'K' },
-            new char[] {'K'}
-        },
-        new char[][]{
-            new char[] { 'W', 'L' },
-            new char[] {'L'}
-        },
-        new char[][]{
-            new char[] { 'W', 'M' },
-            new char[] {'M'}
-        },
-        new char[][]{
-            new char[] { 'W', 'N' },
-            new char[] {'N'}
-        },
-        new char[][]{
-            new char[] { 'W', 'O' },
-            new char[] {'W'}
-        },
-        new char[][]{
-            new char[] { 'W', 'P' },
-            new char[] {'P'}
-        },
-        new char[][]{
-            new char[] { 'W', 'Q' },
-            new char[] {'K'}
-        },
-        new char[][]{
-            new char[] { 'W', 'U' },
-            new char[] {'W'}
-        },
-        new char[][]{
-            new char[] { 'W', 'V' },
-            new char[] {'F'}
-        },
-        new char[][]{
-            new char[] { 'W', 'Z' },
-            new char[] {'S'}
-        },
-        new char[][]{
-            new char[] { 'W', 'R' },
-            new char[] {'R'}
-        },
-        new char[][]{
             new char[] { 'W', 'H' },
-            new char[] {'H'}
+            new char[] {'W'}
+        },
+        new char[][]{
+            new char[] { 'Y', 'A' },
+            new char[] {'Y'}
         },
         new char[][]{
             new char[] { 'Y', 'B' },
@@ -297,12 +132,20 @@ public partial class Metaphone
             new char[] {'T'}
         },
         new char[][]{
+            new char[] { 'Y', 'E' },
+            new char[] {'Y'}
+        },
+        new char[][]{
             new char[] { 'Y', 'F' },
             new char[] {'F'}
         },
         new char[][]{
             new char[] { 'Y', 'G' },
             new char[] {'K'}
+        },
+        new char[][]{
+            new char[] { 'Y', 'I' },
+            new char[] {'Y'}
         },
         new char[][]{
             new char[] { 'Y', 'J' },
@@ -325,6 +168,10 @@ public partial class Metaphone
             new char[] {'N'}
         },
         new char[][]{
+            new char[] { 'Y', 'O' },
+            new char[] {'Y'}
+        },
+        new char[][]{
             new char[] { 'Y', 'P' },
             new char[] {'P'}
         },
@@ -343,6 +190,10 @@ public partial class Metaphone
         new char[][]{
             new char[] { 'Y', 'T' },
             new char[] {'T'}
+        },
+        new char[][]{
+            new char[] { 'Y', 'U' },
+            new char[] {'Y'}
         },
         new char[][]{
             new char[] { 'Y', 'V' },
@@ -384,6 +235,5 @@ public partial class Metaphone
             new char[] { 'Z' },
             new char[] {'S'}
         }
-
     };
 }
