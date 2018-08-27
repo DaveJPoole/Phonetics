@@ -40,6 +40,9 @@ public partial class Phonetics
             case 4:
                 PhoneticObject = new Metaphone(_inputString);
                 break;
+            case 6:
+                PhoneticObject = new ColognePhonetic(_inputString);
+                break;
             default:
                 PhoneticObject = new Soundex(_inputString);
                 PhoneticType = 0;

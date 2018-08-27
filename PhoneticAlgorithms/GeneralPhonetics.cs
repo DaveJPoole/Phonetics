@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 public class GeneralPhonetics : BasePhonetics
 {
@@ -315,7 +313,26 @@ public class GeneralPhonetics : BasePhonetics
         CleanToEndOfOutputArray(_validCharacterPosition);
 
     }
+/// <summary>
+/// Some phonetic algorithmns encode a string using separator characters for vowels. Typically after removing adjacent characters there is a need to remove
+/// these separator characters.
+/// </summary>
+/// <param name="characterToStrip">The character to eliminate from the output array.</param>
+    public void StripCharacterFromOutputArray(char characterToStrip, int startPosition=1)
+    {
+        _currentCharacterPosition = startPosition;
+        _validCharacterPosition = startPosition - 1;
 
+        while (_currentCharacterPosition < _outputArray.Length)
+        {
+            if (_outputArray[_currentCharacterPosition]!= characterToStrip)
+            {
+                _outputArray[++_validCharacterPosition] = _outputArray[_currentCharacterPosition];
+            }
+            _currentCharacterPosition++;
+        }
+        CleanToEndOfOutputArray(_validCharacterPosition);
+    }
     private void CleanToEndOfOutputArray(int _validCharacterPosition)
     {
         // Once all the duplicate characters have been knocked out we need to make sure that

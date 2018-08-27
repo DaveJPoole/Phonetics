@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-public partial class Metaphone : GeneralPhonetics
+﻿public partial class Metaphone : GeneralPhonetics
 {
     public Metaphone(string inputString) : base(inputString)
     {

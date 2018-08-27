@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-public partial class DaitchMokotoff : GeneralPhonetics
+﻿public partial class DaitchMokotoff : GeneralPhonetics
 {
     public DaitchMokotoff(string inputString) : base(inputString) {
         TwoCharacterReplacements = new char[] { 'X' }; 

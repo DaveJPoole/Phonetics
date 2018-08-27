@@ -1,6 +1,4 @@
-﻿
-
-public partial class Metaphone
+﻿public partial class Metaphone
 {
     public override char[][][] AFTERVOWEL
     {

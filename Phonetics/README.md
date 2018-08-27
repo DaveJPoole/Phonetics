@@ -29,10 +29,10 @@ It has proven to be an educational project in many ways
 |Soundex|COMPLETE|
 |RefinedSoundex|COMPLETE|
 |NYSIIS|COMPLETE|
-|Daitch Mokotoff|Complete|
-|Metaphone|Nearing completion|
+|Daitch Mokotoff|COMPLETE|
+|Metaphone|COMPLETE|
 |Caverphone|TODO|
-|ColognePhonetic|TODO|
+|ColognePhonetic|COMPLETE|
 
 ## Caveats and warnings
 As I progress with this I am refactoring as I find the need therefore the code is subject to change.

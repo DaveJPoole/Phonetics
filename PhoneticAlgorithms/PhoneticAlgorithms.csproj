@@ -50,7 +50,9 @@
     <Compile Include="MetaphoneWordMiddle.cs" />
     <Compile Include="Metaphone_VOWEL.cs" />
     <Compile Include="MetaphoneWordBoundary.cs" />
+    <Compile Include="ColognePhonetic.cs" />
     <Compile Include="NYSIIS.cs" />
+    <Compile Include="ColognePhoneticUtility.cs" />
     <Compile Include="NYSIISUtility.cs" />
     <Compile Include="RefinedSoundex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

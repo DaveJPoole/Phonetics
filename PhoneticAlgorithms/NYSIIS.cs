@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
-public partial class NYSIIS : GeneralPhonetics
+﻿public partial class NYSIIS : GeneralPhonetics
 {
  
     public NYSIIS(string inputString) : base(inputString) { }
